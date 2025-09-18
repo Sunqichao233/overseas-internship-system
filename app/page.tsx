@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function HomePage() {
   const [name, setName] = useState('')
@@ -72,12 +73,25 @@ export default function HomePage() {
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-xl p-8 w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">
-            作业提交系统
-          </h1>
-          <p className="text-gray-600">
-            请填写您的信息并上传作业文件
-          </p>
+          <div className="flex justify-between items-start mb-4">
+            <div className="flex-1">
+              <h1 className="text-3xl font-bold text-gray-800 mb-2">
+                作业提交系统
+              </h1>
+              <p className="text-gray-600">
+                请填写您的信息并上传作业文件
+              </p>
+            </div>
+            <Link
+              href="/stats"
+              className="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
+            >
+              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+              统计
+            </Link>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">

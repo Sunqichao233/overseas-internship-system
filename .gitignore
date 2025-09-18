@@ -32,6 +32,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Uploaded files (optional - remove this line if you want to track uploaded files)
+# Uploaded files and grading results
 /public/uploads/*
 !/public/uploads/.gitkeep
+/public/results/*
+!/public/results/.gitkeep
