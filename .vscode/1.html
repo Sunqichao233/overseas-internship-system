@@ -3,20 +3,29 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <style type="text/css">
-        div
+    <script>
+        window.onload = function ()
         {
-            display:inline-block; /*将块元素转换为inline-block元素*/
-            padding-top:20px;
-            padding-right:40px;
-            padding-bottom:60px;
-            padding-left:80px;
-            border:2px solid red;
-            background-color:#FFDEAD;
-        }
-    </style>
+            var oTxt = document.getElementById("txt");
+            var oDiv = document.getElementById("content");
+            //定义一个变量，保存正则表达式
+            var myregex = /^[0-9]*$/;
+
+            oTxt.onkeyup = function ()
+            {
+                //判断是否输入为数字
+                if (myregex.test(oTxt.value)) {
+                    oDiv.innerHTML = "输入正确";
+                } else {
+                    oDiv.innerHTML = "必须输入数字";
+                }
+            };
+
+        };
+    </script>
 </head>
 <body>
-    <div>绿叶学习网</div>
+  <input id="txt" type="text" />
+  <div id="content" style="color:red;"></div>
 </body>
 </html>
