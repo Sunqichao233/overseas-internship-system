@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trip7天空温泉ホテル ログイン</title>
+    <link rel="stylesheet" href="摸底考试1.css">
+</head>
+<body>
+    <main class="login-shell">
+        <section class="login-panel">
+            <div class="brand">
+                <div class="brand__icon">
+                    <span class="brand__triangle"></span>
+                </div>
+                <div>
+                    <div class="brand__eyebrow">trip7 member lounge</div>
+                    <div class="brand__name">trip7 天空温泉ホテル</div>
+                </div>
+            </div>
+
+            <form class="login-form" id="loginForm" novalidate>
+                <div class="field">
+                    <label for="identity">メールアドレスまたは会員ID</label>
+                    <input id="identity" name="identity" type="text" autocomplete="username" placeholder="you@example.jp">
+                    <small class="field__error"></small>
+                </div>
+
+                <div class="field">
+                    <label for="password">パスワード</label>
+                    <input id="password" name="password" type="password" autocomplete="current-password" placeholder="6文字以上で入力してください">
+                    <small class="field__error"></small>
+                </div>
+
+                <button class="button button--primary" type="submit">ログイン</button>
+
+                <div class="form-links">
+                    <a href="#">パスワードをお忘れですか？</a>
+                    <a href="#">法人契約・学校アカウントでログイン</a>
+                </div>
+
+                <div class="divider">
+                    <span>または</span>
+                </div>
+
+                <button class="button button--ghost" type="button">新規会員登録</button>
+
+                <p class="form-status" id="formStatus" aria-live="polite"></p>
+            </form>
+
+            <footer class="login-footer">
+                <p>Copyright © 2026 trip7天空温泉ホテル. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">利用規約</a>
+                    <a href="#">プライバシーポリシー</a>
+                </div>
+            </footer>
+        </section>
+
+        <section class="hero-panel">
+            <div class="hero-panel__overlay"></div>
+            <div class="hero-panel__content">
+                <p class="hero-panel__kicker">天空にいちばん近い、湯けむりの隠れ家</p>
+                <h1>trip7で、心ほどける温泉ステイへ</h1>
+                <button class="button button--outline" type="button">宿泊プランを確認する</button>
+            </div>
+            <div class="light-columns" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+        </section>
+    </main>
+
+    <script src="摸底考试1.js"></script>
+</body>
+</html>

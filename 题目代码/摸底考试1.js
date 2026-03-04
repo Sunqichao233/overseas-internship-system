@@ -7,7 +7,7 @@ const fields = [
         input: document.getElementById('identity'),
         validate(value) {
             if (!value.trim()) {
-                return 'Please enter your email or username.';
+                return 'メールアドレス、または会員IDを入力してください。';
             }
             return '';
         }
@@ -16,10 +16,10 @@ const fields = [
         input: document.getElementById('password'),
         validate(value) {
             if (!value.trim()) {
-                return 'Please enter your password.';
+                return 'パスワードを入力してください。';
             }
             if (value.trim().length < 6) {
-                return 'Password must be at least 6 characters.';
+                return 'パスワードは6文字以上で入力してください。';
             }
             return '';
         }
@@ -56,11 +56,11 @@ form.addEventListener('submit', (event) => {
     });
 
     if (hasError) {
-        statusText.textContent = 'Please fix the highlighted fields and try again.';
+        statusText.textContent = '入力内容を確認して、もう一度お試しください。';
         return;
     }
 
-    statusText.textContent = 'Demo submitted successfully.';
+    statusText.textContent = 'ログイン情報を確認しました。ようこそ、trip7天空温泉ホテルへ。';
     form.reset();
 
     fields.forEach(({ input }) => {

@@ -82,8 +82,16 @@ a {
 
 .brand__name {
     font-size: clamp(1.5rem, 2vw, 2.2rem);
-    letter-spacing: 0.28rem;
-    font-weight: 300;
+    letter-spacing: 0.08rem;
+    font-weight: 500;
+}
+
+.brand__eyebrow {
+    margin-bottom: 6px;
+    color: rgba(255, 255, 255, 0.62);
+    text-transform: uppercase;
+    letter-spacing: 0.22rem;
+    font-size: 0.72rem;
 }
 
 .login-form {
@@ -110,6 +118,10 @@ a {
     border: 1px solid var(--border);
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field input::placeholder {
+    color: rgba(255, 255, 255, 0.28);
 }
 
 .field input:focus {
@@ -245,6 +257,13 @@ a {
     letter-spacing: -0.04em;
 }
 
+.hero-panel__kicker {
+    margin: 0 0 14px;
+    color: rgba(255, 241, 233, 0.78);
+    letter-spacing: 0.16rem;
+    font-size: 0.82rem;
+}
+
 .button--outline {
     width: min(380px, 100%);
     backdrop-filter: blur(2px);
@@ -355,7 +374,7 @@ a {
     }
 
     .brand__name {
-        letter-spacing: 0.16rem;
+        letter-spacing: 0.04rem;
         font-size: 1.2rem;
     }
 
