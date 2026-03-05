@@ -42,13 +42,36 @@ function normalizeAndMatch(submittedName: string, studentName: string): boolean 
   return false;
 }
 
+async function collectUploadFiles(dir: string, prefix = ''): Promise<string[]> {
+  const entries = await readdir(dir, { withFileTypes: true });
+  const files: string[] = [];
+
+  for (const entry of entries) {
+    if (entry.name === '.gitkeep') {
+      continue;
+    }
+
+    const entryPath = path.join(dir, entry.name);
+    const relativePath = prefix ? path.join(prefix, entry.name) : entry.name;
+
+    if (entry.isDirectory()) {
+      const nestedFiles = await collectUploadFiles(entryPath, relativePath);
+      files.push(...nestedFiles);
+    } else {
+      files.push(relativePath);
+    }
+  }
+
+  return files;
+}
+
 export async function GET() {
   try {
     const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
     
     let files: string[] = [];
     try {
-      files = await readdir(uploadsDir);
+      files = await collectUploadFiles(uploadsDir);
     } catch (error) {
       return NextResponse.json({
         success: false,
@@ -56,7 +79,7 @@ export async function GET() {
       });
     }
     
-    const uploadedFiles = files.filter(file => file !== '.gitkeep');
+    const uploadedFiles = files;
     
     if (uploadedFiles.length === 0) {
       return NextResponse.json({
@@ -83,8 +106,9 @@ export async function GET() {
     const submissions = new Map<string, { files: string[], count: number }>();
     
     uploadedFiles.forEach(file => {
-      const match = file.match(/^(.+?)_\d+\./);
-      const name = match ? match[1] : file;
+      const baseFileName = path.basename(file);
+      const match = baseFileName.match(/^(.+?)_\d+\./);
+      const name = match ? match[1] : baseFileName;
       
       if (!submissions.has(name)) {
         submissions.set(name, { files: [], count: 0 });
@@ -102,7 +126,7 @@ export async function GET() {
       let files: string[] = [];
       
       // 检查是否有匹配的提交
-      for (const [submittedName, submission] of submissions.entries()) {
+      for (const [submittedName, submission] of Array.from(submissions.entries())) {
         if (normalizeAndMatch(submittedName, studentName)) {
           status = 'submitted';
           fileCount = submission.count;

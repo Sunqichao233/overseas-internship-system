@@ -1,16 +1,45 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 export default function HomePage() {
   const [name, setName] = useState('')
+  const [assignment, setAssignment] = useState('')
+  const [assignments, setAssignments] = useState<string[]>([])
+  const [assignmentsLoading, setAssignmentsLoading] = useState(true)
   const [file, setFile] = useState<File | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState('')
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('')
 
   const isZipFile = (selectedFile: File) => selectedFile.name.toLowerCase().endsWith('.zip')
+
+  const fetchAssignments = async () => {
+    try {
+      setAssignmentsLoading(true)
+      const response = await fetch('/api/upload/assignments')
+      const result = await response.json()
+
+      if (result.success) {
+        setAssignments(result.data || [])
+      } else {
+        setAssignments([])
+        setMessage(result.message || '获取提交日期失败')
+        setMessageType('error')
+      }
+    } catch (error) {
+      setAssignments([])
+      setMessage('获取提交日期失败，请刷新重试')
+      setMessageType('error')
+    } finally {
+      setAssignmentsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchAssignments()
+  }, [])
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0] || null
@@ -41,6 +70,12 @@ export default function HomePage() {
       return
     }
 
+    if (!assignment) {
+      setMessage('请选择提交日期')
+      setMessageType('error')
+      return
+    }
+
     if (!file) {
       setMessage('请选择要上传的 .zip 压缩包')
       setMessageType('error')
@@ -59,6 +94,7 @@ export default function HomePage() {
     try {
       const formData = new FormData()
       formData.append('name', name.trim())
+      formData.append('assignment', assignment)
       formData.append('file', file)
 
       const response = await fetch('/api/upload', {
@@ -73,6 +109,7 @@ export default function HomePage() {
         setMessageType('success')
         // 清空表单
         setName('')
+        setAssignment('')
         setFile(null)
         // 重置文件输入框
         const fileInput = document.getElementById('file-input') as HTMLInputElement
@@ -132,6 +169,34 @@ export default function HomePage() {
               placeholder="请输入您的姓名"
               disabled={isSubmitting}
             />
+          </div>
+
+          {/* 文件上传 */}
+          <div>
+            <label htmlFor="assignment" className="block text-sm font-medium text-gray-700 mb-2">
+              选择提交日期 <span className="text-red-500">*</span>
+            </label>
+            <select
+              id="assignment"
+              value={assignment}
+              onChange={(e) => setAssignment(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              disabled={isSubmitting || assignmentsLoading}
+            >
+              <option value="">
+                {assignmentsLoading ? '正在加载提交日期...' : '请选择提交日期'}
+              </option>
+              {assignments.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+            {!assignmentsLoading && assignments.length === 0 && (
+              <p className="mt-2 text-xs text-red-600">
+                未检测到可选日期，请先在 public/uploads 下创建日期目录。
+              </p>
+            )}
           </div>
 
           {/* 文件上传 */}
@@ -204,9 +269,10 @@ export default function HomePage() {
           <h3 className="text-sm font-medium text-gray-800 mb-2">使用说明：</h3>
           <ul className="text-xs text-gray-600 space-y-1">
             <li>• 请确保输入真实姓名</li>
+            <li>• 先选择提交日期，再上传压缩包</li>
             <li>• 仅支持上传 .zip 格式的作业压缩包</li>
             <li>• 文件大小限制：10MB以内</li>
-            <li>• 提交成功后文件将保存到服务器</li>
+            <li>• 提交成功后文件将保存到对应日期目录下</li>
           </ul>
         </div>
       </div>
