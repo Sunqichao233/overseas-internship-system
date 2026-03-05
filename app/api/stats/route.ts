@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { readdir, access } from 'fs/promises';
+import { readdir } from 'fs/promises';
 import path from 'path';
 
 // 海外实习学生名单
@@ -40,26 +40,6 @@ function normalizeAndMatch(submittedName: string, studentName: string): boolean 
   }
   
   return false;
-}
-
-// 检查学生是否有批改结果文件
-async function checkResultFile(studentName: string): Promise<{hasResult: boolean, fileName?: string}> {
-  const resultsDir = path.join(process.cwd(), 'public', 'results');
-  const possibleExtensions = ['.pdf', '.docx', '.doc', '.txt', '.zip', '.html'];
-  
-  for (const ext of possibleExtensions) {
-    const fileName = `${studentName}_批改结果${ext}`;
-    const filePath = path.join(resultsDir, fileName);
-    
-    try {
-      await access(filePath);
-      return { hasResult: true, fileName };
-    } catch {
-      // 文件不存在，继续检查下一个格式
-    }
-  }
-  
-  return { hasResult: false };
 }
 
 export async function GET() {
@@ -131,16 +111,11 @@ export async function GET() {
         }
       }
       
-      // 检查是否有批改结果文件
-      const resultInfo = await checkResultFile(studentName);
-      
       return {
         name: studentName,
         status,
         fileCount,
-        files,
-        hasResult: resultInfo.hasResult,
-        resultFileName: resultInfo.fileName
+        files
       };
     }));
     

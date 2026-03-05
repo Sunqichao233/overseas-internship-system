@@ -23,7 +23,14 @@ export async function POST(request: NextRequest) {
     }
 
     // 获取文件扩展名
-    const fileExtension = path.extname(file.name);
+    const fileExtension = path.extname(file.name).toLowerCase();
+    if (fileExtension !== '.zip') {
+      return NextResponse.json({
+        message: '仅支持上传 .zip 压缩包',
+        success: false
+      }, { status: 400 });
+    }
+
     const timestamp = Date.now();
     const sanitizedName = name.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '_');
     const fileName = `${sanitizedName}_${timestamp}${fileExtension}`;

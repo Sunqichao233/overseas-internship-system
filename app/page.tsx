@@ -10,8 +10,25 @@ export default function HomePage() {
   const [message, setMessage] = useState('')
   const [messageType, setMessageType] = useState<'success' | 'error' | ''>('')
 
+  const isZipFile = (selectedFile: File) => selectedFile.name.toLowerCase().endsWith('.zip')
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0] || null
+    if (!selectedFile) {
+      setFile(null)
+      return
+    }
+
+    if (!isZipFile(selectedFile)) {
+      setFile(null)
+      setMessage('仅支持上传 .zip 压缩包')
+      setMessageType('error')
+      e.target.value = ''
+      return
+    }
+
+    setMessage('')
+    setMessageType('')
     setFile(selectedFile)
   }
 
@@ -25,7 +42,13 @@ export default function HomePage() {
     }
 
     if (!file) {
-      setMessage('请选择要上传的文件')
+      setMessage('请选择要上传的 .zip 压缩包')
+      setMessageType('error')
+      return
+    }
+
+    if (!isZipFile(file)) {
+      setMessage('仅支持上传 .zip 压缩包')
       setMessageType('error')
       return
     }
@@ -114,12 +137,13 @@ export default function HomePage() {
           {/* 文件上传 */}
           <div>
             <label htmlFor="file-input" className="block text-sm font-medium text-gray-700 mb-2">
-              作业文件 <span className="text-red-500">*</span>
+              作业压缩包（.zip） <span className="text-red-500">*</span>
             </label>
             <div className="relative">
               <input
                 type="file"
                 id="file-input"
+                accept=".zip,application/zip"
                 onChange={handleFileChange}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent file:mr-4 file:py-1 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
                 disabled={isSubmitting}
@@ -180,7 +204,7 @@ export default function HomePage() {
           <h3 className="text-sm font-medium text-gray-800 mb-2">使用说明：</h3>
           <ul className="text-xs text-gray-600 space-y-1">
             <li>• 请确保输入真实姓名</li>
-            <li>• 支持常见文件格式（如：.js, .html, .css, .zip等）</li>
+            <li>• 仅支持上传 .zip 格式的作业压缩包</li>
             <li>• 文件大小限制：10MB以内</li>
             <li>• 提交成功后文件将保存到服务器</li>
           </ul>

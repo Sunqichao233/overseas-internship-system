@@ -8,8 +8,6 @@ interface Student {
   status: 'submitted' | 'not_submitted'
   fileCount: number
   files: string[]
-  hasResult: boolean
-  resultFileName?: string
 }
 
 interface InvalidSubmission {
@@ -34,47 +32,6 @@ export default function StatsPage() {
   const [data, setData] = useState<StatsData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
-  const [downloading, setDownloading] = useState<string>('')
-
-  const handleDownload = async (studentName: string) => {
-    try {
-      setDownloading(studentName)
-      const response = await fetch(`/api/download?student=${encodeURIComponent(studentName)}`)
-      
-      if (!response.ok) {
-        const errorData = await response.json()
-        alert(errorData.message || '下载失败')
-        return
-      }
-      
-      // 获取文件名
-      const contentDisposition = response.headers.get('Content-Disposition')
-      let fileName = `${studentName}_批改结果`
-      if (contentDisposition) {
-        const fileNameMatch = contentDisposition.match(/filename\*=UTF-8''(.+)/)
-        if (fileNameMatch) {
-          fileName = decodeURIComponent(fileNameMatch[1])
-        }
-      }
-      
-      // 创建下载链接
-      const blob = await response.blob()
-      const url = window.URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = fileName
-      document.body.appendChild(a)
-      a.click()
-      window.URL.revokeObjectURL(url)
-      document.body.removeChild(a)
-      
-    } catch (error) {
-      console.error('下载错误:', error)
-      alert('下载过程中发生错误')
-    } finally {
-      setDownloading('')
-    }
-  }
 
   const fetchStats = async () => {
     try {
@@ -154,12 +111,6 @@ export default function StatsPage() {
                 刷新数据
               </button>
               <Link
-                href="/admin"
-                className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md transition-colors"
-              >
-                批改管理
-              </Link>
-              <Link
                 href="/"
                 className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors"
               >
@@ -221,9 +172,6 @@ export default function StatsPage() {
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     文件列表
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    下载批改结果
-                  </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -258,40 +206,6 @@ export default function StatsPage() {
                         </div>
                       ) : (
                         <span className="text-xs text-gray-400">无文件</span>
-                      )}
-                    </td>
-                    <td className="px-6 py-4">
-                      {student.hasResult ? (
-                        <button
-                          onClick={() => handleDownload(student.name)}
-                          disabled={downloading === student.name}
-                          className={`inline-flex items-center px-3 py-1 text-xs font-medium rounded-md transition-colors ${
-                            downloading === student.name
-                              ? 'bg-gray-400 cursor-not-allowed text-white'
-                              : 'bg-blue-600 hover:bg-blue-700 text-white'
-                          }`}
-                        >
-                          {downloading === student.name ? (
-                            <>
-                              <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-white mr-1"></div>
-                              下载中
-                            </>
-                          ) : (
-                            <>
-                              <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                              </svg>
-                              下载
-                            </>
-                          )}
-                        </button>
-                      ) : (
-                        <span className="inline-flex items-center px-3 py-1 text-xs font-medium rounded-md bg-gray-100 text-gray-500">
-                          <svg className="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
-                          暂无结果
-                        </span>
                       )}
                     </td>
                   </tr>
