@@ -25,18 +25,43 @@ interface StatsData {
   submissionRate: number
   students: Student[]
   invalidSubmissions: InvalidSubmission[]
+  selectedAssignment: string
   lastUpdated: string
 }
 
 export default function StatsPage() {
   const [data, setData] = useState<StatsData | null>(null)
+  const [assignments, setAssignments] = useState<string[]>([])
+  const [selectedAssignment, setSelectedAssignment] = useState('__all__')
+  const [assignmentsLoading, setAssignmentsLoading] = useState(true)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  const fetchStats = async () => {
+  const fetchAssignments = async () => {
+    try {
+      setAssignmentsLoading(true)
+      const response = await fetch('/api/upload/assignments')
+      const result = await response.json()
+
+      if (result.success) {
+        setAssignments(result.data || [])
+      } else {
+        setAssignments([])
+      }
+    } catch {
+      setAssignments([])
+    } finally {
+      setAssignmentsLoading(false)
+    }
+  }
+
+  const fetchStats = async (assignment: string = selectedAssignment) => {
     try {
       setLoading(true)
-      const response = await fetch('/api/stats')
+      const query = assignment && assignment !== '__all__'
+        ? `?assignment=${encodeURIComponent(assignment)}`
+        : ''
+      const response = await fetch(`/api/stats${query}`)
       const result = await response.json()
       
       if (result.success) {
@@ -53,7 +78,8 @@ export default function StatsPage() {
   }
 
   useEffect(() => {
-    fetchStats()
+    fetchAssignments()
+    fetchStats('__all__')
   }, [])
 
   if (loading) {
@@ -81,7 +107,7 @@ export default function StatsPage() {
           <h2 className="text-xl font-bold text-gray-800 mb-2">加载失败</h2>
           <p className="text-gray-600 mb-4">{error}</p>
           <button
-            onClick={fetchStats}
+            onClick={() => fetchStats(selectedAssignment)}
             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors"
           >
             重试
@@ -102,7 +128,7 @@ export default function StatsPage() {
             <h1 className="text-3xl font-bold text-gray-800">作业提交统计</h1>
             <div className="flex gap-3">
               <button
-                onClick={fetchStats}
+                onClick={() => fetchStats(selectedAssignment)}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors flex items-center"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,6 +136,23 @@ export default function StatsPage() {
                 </svg>
                 刷新数据
               </button>
+              <select
+                value={selectedAssignment}
+                onChange={(e) => {
+                  const value = e.target.value
+                  setSelectedAssignment(value)
+                  fetchStats(value)
+                }}
+                className="px-3 py-2 border border-gray-300 rounded-md bg-white text-sm"
+                disabled={loading || assignmentsLoading}
+              >
+                <option value="__all__">全部作业</option>
+                {assignments.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
               <Link
                 href="/"
                 className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors"
@@ -143,6 +186,10 @@ export default function StatsPage() {
             </div>
           </div>
           
+          <p className="text-sm text-gray-600 mb-3">
+            当前统计范围: {data.selectedAssignment === '__all__' ? '全部作业' : data.selectedAssignment}
+          </p>
+
           <p className="text-sm text-gray-500">
             最后更新: {new Date(data.lastUpdated).toLocaleString('zh-CN')} | 总文件数: {data.totalFiles}个
           </p>

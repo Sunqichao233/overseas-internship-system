@@ -1,45 +1,21 @@
-import { NextResponse } from 'next/server';
-import { readdir } from 'fs/promises';
+import { NextRequest, NextResponse } from 'next/server';
+import { readdir, stat } from 'fs/promises';
 import path from 'path';
+
+export const dynamic = 'force-dynamic';
 
 // 海外实习学生名单
 const studentList = [
-  '薛舒文', '黄玉婷', '周騫騫', '林雨晴', '王睿清',
-  '朱家緯', '蔡姿穎', '茅懋', '陈曦', '徐若熒',
-  '许如清', '徐淑潔', '朱沅珊', '洪佳逸', '孟楨璽',
-  '金旭沢', '刘浩然', '陈紫彤', '唐韻茜', '王雨桐',
-  '刘佳艳', '安书雯', '姚奕晨'
+  '徐伟杰', '袁文轩', '凌祺轩', '吴炫颉', '陈一炫',
+  '袁宇泽', '王浩棱', '董正焱', '钱琪譞', '孙怡雪',
+  '马一允', '黄诗珏', '蒋文涛', '王嘉康', '杨泉浩',
+  '张威', '张骆道', '汪彦隽', '王家豪', '武守浩',
+  '汤震阳', '罗劲楠'
 ];
 
 // 处理繁简体和异体字匹配
 function normalizeAndMatch(submittedName: string, studentName: string): boolean {
-  if (submittedName === studentName) return true;
-  
-  const mappings: Record<string, string[]> = {
-    '周騫騫': ['周骞骞'],
-    '蔡姿穎': ['蔡姿颖'],
-    '唐韻茜': ['唐韵茜'],
-    '孟楨璽': ['孟桢玺'],
-    '金旭沢': ['金旭泽'],
-    '徐若熒': ['徐若荧'],
-    '徐淑潔': ['徐淑洁'],
-    '朱家緯': ['朱家纬'],
-    '刘浩然': ['劉浩然'],
-    '刘佳艳': ['劉佳艳', '劉佳豔'],
-    '陈曦': ['陳曦'],
-    '陈紫彤': ['陳紫彤'],
-    '许如清': ['許如清'],
-    '安书雯': ['安書雯']
-  };
-  
-  // 检查是否是某个学生的变体
-  for (const [standard, variants] of Object.entries(mappings)) {
-    if (standard === studentName && variants.includes(submittedName)) {
-      return true;
-    }
-  }
-  
-  return false;
+  return submittedName === studentName;
 }
 
 async function collectUploadFiles(dir: string, prefix = ''): Promise<string[]> {
@@ -65,13 +41,42 @@ async function collectUploadFiles(dir: string, prefix = ''): Promise<string[]> {
   return files;
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const uploadsDir = path.join(process.cwd(), 'public', 'uploads');
+    const uploadsRoot = path.join(process.cwd(), 'public', 'uploads');
+    const assignmentParam = (request.nextUrl.searchParams.get('assignment') || '').trim();
+    const assignment = assignmentParam && assignmentParam !== '__all__'
+      ? assignmentParam.replace(/[\\/]/g, '')
+      : '';
+    const targetDir = assignment ? path.join(uploadsRoot, assignment) : uploadsRoot;
+
+    if (assignment) {
+      if (!assignment || assignment.includes('..')) {
+        return NextResponse.json({
+          success: false,
+          message: '作业目录参数不合法'
+        }, { status: 400 });
+      }
+
+      try {
+        const targetStat = await stat(targetDir);
+        if (!targetStat.isDirectory()) {
+          return NextResponse.json({
+            success: false,
+            message: '所选作业目录不存在'
+          }, { status: 400 });
+        }
+      } catch {
+        return NextResponse.json({
+          success: false,
+          message: '所选作业目录不存在'
+        }, { status: 400 });
+      }
+    }
     
     let files: string[] = [];
     try {
-      files = await collectUploadFiles(uploadsDir);
+      files = await collectUploadFiles(targetDir);
     } catch (error) {
       return NextResponse.json({
         success: false,
@@ -97,7 +102,8 @@ export async function GET() {
             fileCount: 0,
             files: []
           })),
-          invalidSubmissions: []
+          invalidSubmissions: [],
+          selectedAssignment: assignment || '__all__'
         }
       });
     }
@@ -176,6 +182,7 @@ export async function GET() {
         submissionRate,
         students: studentStats,
         invalidSubmissions,
+        selectedAssignment: assignment || '__all__',
         lastUpdated: new Date().toISOString()
       }
     });
