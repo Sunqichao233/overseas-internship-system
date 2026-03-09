@@ -3,30 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>题目2：课程信息页</title>
+  <title>前端课程信息页</title>
 </head>
 <body>
-  <h1>题目2：课程信息页（列表+图片+链接）</h1>
-  <p>要求：不使用 CSS，只通过 HTML 标签组织出结构良好的信息页。</p>
-  <hr>
+  <h1>前端基础课程导航</h1>
+  <ul>
+    <li><a href="#intro">课程介绍</a></li>
+    <li><a href="#roadmap">学习路线</a></li>
+    <li><a href="#terms">术语解释</a></li>
+    <li><a href="#links">学习链接</a></li>
+  </ul>
 
-  <h2>任务说明</h2>
-  <ol>
-    <li>创建“前端基础课程导航”，使用无序列表展示 4 个导航项。</li>
-    <li>创建“学习路线”，使用有序列表展示至少 5 个步骤。</li>
-    <li>创建“术语解释”，使用定义列表（<code>dl/dt/dd</code>）写 3 组术语。</li>
-    <li>插入一张课程封面图，并写图注（<code>figure/figcaption</code>）。</li>
-    <li>添加 2 个外部链接：一个新窗口打开，一个当前页打开。</li>
-  </ol>
+  <section id="intro">
+    <h2>课程封面</h2>
+    <figure>
+      <img src="https://via.placeholder.com/320x160?text=Front-end+Course" alt="前端课程封面图" width="320" height="160">
+      <figcaption>从 HTML 入门到网页交互开发</figcaption>
+    </figure>
+  </section>
 
-  <h2>标签要求</h2>
-  <p>至少用到：<code>ul/ol/li</code>、<code>dl/dt/dd</code>、<code>a</code>、<code>img</code>、<code>figure</code>、<code>figcaption</code>、<code>section</code>。</p>
+  <section id="roadmap">
+    <h2>学习路线</h2>
+    <ol>
+      <li>掌握 HTML 常用标签</li>
+      <li>理解页面语义化结构</li>
+      <li>学习 CSS 基础布局</li>
+      <li>完成 JavaScript 入门交互</li>
+      <li>独立完成小项目页面</li>
+    </ol>
+  </section>
 
-  <hr>
-  <h2>我的作答</h2>
-  <!-- 在这里完成你的代码 -->
+  <section id="terms">
+    <h2>术语解释</h2>
+    <dl>
+      <dt>HTML</dt>
+      <dd>用于构建网页结构的标记语言。</dd>
+      <dt>CSS</dt>
+      <dd>用于设置网页外观和布局的样式语言。</dd>
+      <dt>JavaScript</dt>
+      <dd>用于实现网页交互逻辑的脚本语言。</dd>
+    </dl>
+  </section>
 
-  <hr>
-  <p>可用图片地址示例：<code>https://via.placeholder.com/320x160?text=Course+Cover</code></p>
+  <section id="links">
+    <h2>学习链接</h2>
+    <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML" target="_blank" rel="noopener noreferrer">HTML 文档（新窗口打开）</a></p>
+    <p><a href="https://www.w3school.com.cn/html/index.asp">HTML 教程（当前页面打开）</a></p>
+  </section>
 </body>
 </html>
