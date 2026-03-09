@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HTML基础标签综合演示">
+  <meta name="keywords" content="HTML, 标签, 演示">
+  <title>HTML基础标签综合演示</title>
+  <style>
+    body { font-family: "Segoe UI", "PingFang SC", sans-serif; margin: 0; background: #f6f8fb; color: #1f2937; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 24px; }
+    section, article, aside, nav, footer, header, main { margin-bottom: 18px; }
+    .card { background: #fff; border-radius: 10px; padding: 16px; box-shadow: 0 4px 20px rgba(15,23,42,.06); }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #d1d5db; padding: 8px; text-align: left; }
+    code, pre, kbd, samp { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    pre { background: #0f172a; color: #e2e8f0; padding: 12px; border-radius: 6px; overflow: auto; }
+    mark { background: #fef08a; }
+    small { color: #6b7280; }
+    fieldset { border: 1px solid #cbd5e1; border-radius: 6px; margin: 10px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 14px; }
+    progress, meter { width: 100%; }
+  </style>
+</head>
+<body>
+  <header class="card">
+    <div class="wrap">
+      <h1>HTML基础标签综合演示</h1>
+      <p>本页用于课堂演示常见基础标签，覆盖结构、文本、表单、媒体等。</p>
+      <nav>
+        <a href="#text">文本</a> |
+        <a href="#list">列表</a> |
+        <a href="#table">表格</a> |
+        <a href="#form">表单</a> |
+        <a href="#media">媒体</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="text" class="card">
+      <h2>1. 文本与内联标签</h2>
+      <p>这是一个 <strong>strong</strong>、<b>b</b>、<em>em</em>、<i>i</i>、<u>u</u>、<s>s</s> 示例。</p>
+      <p><mark>mark高亮</mark>、<small>small小字</small>、<abbr title="HyperText Markup Language">HTML</abbr> 缩写。</p>
+      <p>上标 x<sup>2</sup>，下标 H<sub>2</sub>O，时间：<time datetime="2026-03-09">2026-03-09</time>。</p>
+      <p>引用：<q>学而时习之，不亦说乎。</q></p>
+      <blockquote cite="https://example.com">这是一个 blockquote 块级引用示例。</blockquote>
+      <address>联系地址：Tokyo / Email: demo@example.com</address>
+      <p>快捷键：<kbd>Ctrl</kbd> + <kbd>S</kbd>，输出：<samp>Saved.</samp></p>
+      <p>代码：<code>const msg = "Hello HTML";</code></p>
+      <pre><code>&lt;h1&gt;Hello&lt;/h1&gt;
+&lt;p&gt;这是段落&lt;/p&gt;</code></pre>
+      <hr>
+      <p>换行演示：第一行<br>第二行<br>第三行</p>
+    </section>
+
+    <section id="list" class="card">
+      <h2>2. 列表标签</h2>
+      <div class="grid">
+        <article>
+          <h3>无序列表 ul/li</h3>
+          <ul>
+            <li>苹果</li>
+            <li>香蕉</li>
+            <li>橙子</li>
+          </ul>
+        </article>
+        <article>
+          <h3>有序列表 ol/li</h3>
+          <ol>
+            <li>打开编辑器</li>
+            <li>编写HTML</li>
+            <li>浏览器运行</li>
+          </ol>
+        </article>
+        <article>
+          <h3>定义列表 dl/dt/dd</h3>
+          <dl>
+            <dt>HTML</dt>
+            <dd>网页结构语言</dd>
+            <dt>CSS</dt>
+            <dd>样式语言</dd>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section id="table" class="card">
+      <h2>3. 表格标签</h2>
+      <table>
+        <caption>三周学习计划</caption>
+        <thead>
+          <tr><th>周次</th><th>主题</th><th>状态</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>第1周</td><td>HTML基础</td><td>完成</td></tr>
+          <tr><td>第2周</td><td>CSS布局</td><td>进行中</td></tr>
+          <tr><td>第3周</td><td>JS交互</td><td>待开始</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><td colspan="3">合计：3周</td></tr>
+        </tfoot>
+      </table>
+    </section>
+
+    <section id="form" class="card">
+      <h2>4. 表单标签</h2>
+      <form action="#" method="post" onsubmit="return false;">
+        <fieldset>
+          <legend>基本输入</legend>
+          <label>姓名：<input type="text" name="name" placeholder="请输入姓名"></label>
+          <label>邮箱：<input type="email" name="email" placeholder="name@example.com"></label>
+          <label>密码：<input type="password" name="pwd"></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>更多类型</legend>
+          <label>生日：<input type="date" name="birthday"></label>
+          <label>时间：<input type="time" name="clock"></label>
+          <label>数量：<input type="number" min="1" max="10" value="1"></label>
+          <label>颜色：<input type="color" value="#3b82f6"></label>
+          <label>范围：<input type="range" min="0" max="100" value="60"></label>
+          <label>文件：<input type="file"></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>选择项</legend>
+          <p>
+            性别：
+            <label><input type="radio" name="gender" checked> 男</label>
+            <label><input type="radio" name="gender"> 女</label>
+          </p>
+          <p>
+            兴趣：
+            <label><input type="checkbox" checked> 编程</label>
+            <label><input type="checkbox"> 音乐</label>
+            <label><input type="checkbox"> 运动</label>
+          </p>
+          <label>城市：
+            <select>
+              <optgroup label="中国">
+                <option>北京</option>
+                <option>上海</option>
+              </optgroup>
+              <optgroup label="日本">
+                <option>东京</option>
+                <option>大阪</option>
+              </optgroup>
+            </select>
+          </label>
+          <label>建议：
+            <textarea rows="3" cols="40" placeholder="请输入建议"></textarea>
+          </label>
+        </fieldset>
+
+        <button type="submit">提交</button>
+        <button type="reset">重置</button>
+        <output>表单输出区域 output</output>
+      </form>
+    </section>
+
+    <section id="media" class="card">
+      <h2>5. 媒体与嵌入</h2>
+      <figure>
+        <img src="https://via.placeholder.com/420x180?text=IMG" alt="占位图" width="420" height="180">
+        <figcaption>img + figure + figcaption 示例</figcaption>
+      </figure>
+
+      <audio controls>
+        <source src="" type="audio/mpeg">
+        你的浏览器不支持 audio 标签。
+      </audio>
+
+      <video controls width="320" height="180" poster="https://via.placeholder.com/320x180?text=VIDEO">
+        <source src="" type="video/mp4">
+        你的浏览器不支持 video 标签。
+      </video>
+
+      <p>进度：<progress value="70" max="100"></progress></p>
+      <p>评分：<meter min="0" max="10" value="8"></meter></p>
+      <iframe title="iframe示例" srcdoc="<p>这是 iframe 的 srcdoc 内容</p>"></iframe>
+      <canvas id="demoCanvas" width="260" height="90"></canvas>
+      <svg width="260" height="90" role="img" aria-label="SVG示例">
+        <rect x="10" y="10" width="80" height="40" fill="#3b82f6"></rect>
+        <circle cx="140" cy="30" r="20" fill="#10b981"></circle>
+        <text x="180" y="36" font-size="14">SVG</text>
+      </svg>
+    </section>
+
+    <aside class="card">
+      <h2>6. 其他语义标签</h2>
+      <details>
+        <summary>点击展开详情（details/summary）</summary>
+        <p>这里可以放补充说明。</p>
+      </details>
+      <p>双向文本：<bdi>ABC-123</bdi>，方向控制：<bdo dir="rtl">这段文字从右到左</bdo></p>
+      <p>变量与数学：<var>a</var> + <var>b</var> = <var>c</var></p>
+      <template id="tpl"><p>这是 template 模板内容</p></template>
+      <noscript>你的浏览器未启用JavaScript。</noscript>
+    </aside>
+  </main>
+
+  <footer class="card">
+    <div class="wrap">
+      <p>&copy; 2026 HTML课堂演示。<span>footer 标签示例</span></p>
+    </div>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('demoCanvas');
+    if (canvas && canvas.getContext) {
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#f59e0b';
+      ctx.fillRect(10, 12, 80, 40);
+      ctx.fillStyle = '#111827';
+      ctx.font = '16px sans-serif';
+      ctx.fillText('Canvas', 110, 38);
+    }
+  </script>
+</body>
+</html>
