@@ -4,27 +4,41 @@
   <meta charset="UTF-8">
   <title>使用 &lt;col&gt; 统一样式</title>
   <link rel="stylesheet" href="minimal-table.css">
+  <style>
+    /* 
+     * minimal-table.css 为表格行增加了浅蓝条纹背景（tr:nth-child(even)）。
+     * 如果只在 <col> 上设置背景色，偶数行的单元格会被条纹规则覆盖。
+     * 下面选择器提高了优先级：强制表头和正文的“第二列”始终呈黄色。 
+     */
+    table.col-demo col:nth-child(2),
+    table.col-demo td:nth-child(2),
+    table.col-demo th:nth-child(2) {
+      background-color: yellow;
+    }
+  </style>
 </head>
 <body>
   <h1>&lt;colgroup&gt; / &lt;col&gt; 统一列样式</h1>
 
-<table>
-  <colgroup>
-    <col />
-    <col style="background-color: yellow" />
-  </colgroup>
-  <tr>
-    <th>数据 1</th>
-    <th>数据 2</th>
-  </tr>
-  <tr>
-    <td>加尔各答</td>
-    <td>橙汁</td>
-  </tr>
-  <tr>
-    <td>机器人</td>
-    <td>爵士乐</td>
-  </tr>
-</table>
+  <table class="col-demo">
+    <colgroup>
+      <!-- 第一列无特殊样式，使用默认表格配色 -->
+      <col />
+      <!-- 第二列指定黄色背景；配合上面的样式可覆盖条纹色 -->
+      <col style="background-color: yellow" />
+    </colgroup>
+    <tr>
+      <th>数据 1</th>
+      <th>数据 2</th>
+    </tr>
+    <tr>
+      <td>加尔各答</td>
+      <td>橙汁</td>
+    </tr>
+    <tr>
+      <td>机器人</td>
+      <td>爵士乐</td>
+    </tr>
+  </table>
 </body>
 </html>
