@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML2 表格题目2</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 8px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #fff;
+    }
+
+    .wrap {
+      width: 700px;
+      margin: 0 auto;
+      border: 2px solid #666;
+      padding: 4px;
+    }
+
+    .main-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .main-table td {
+      border: 2px solid #666;
+      font-size: 48px;
+      text-align: left;
+      vertical-align: middle;
+      padding: 8px;
+    }
+
+    .r1 { height: 110px; }
+    .r2 { height: 420px; }
+    .r3 { height: 110px; }
+
+    .center-cell {
+      vertical-align: top;
+      position: relative;
+    }
+
+    .inner-box {
+      width: 220px;
+      border: 2px solid #666;
+      padding: 4px;
+      margin-top: 90px;
+      margin-left: 0;
+    }
+
+    .inner-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .inner-table td {
+      border: 2px solid #666;
+      font-size: 48px;
+      height: 95px;
+      padding: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <table class="main-table">
+      <colgroup>
+        <col style="width: 10%" />
+        <col style="width: 80%" />
+        <col style="width: 10%" />
+      </colgroup>
+      <tr class="r1">
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <tr class="r2">
+        <td>4</td>
+        <td class="center-cell">
+          <div class="inner-box">
+            <table class="inner-table">
+              <tr>
+                <td>小1</td>
+                <td>小2</td>
+              </tr>
+              <tr>
+                <td>小3</td>
+                <td>小4</td>
+              </tr>
+            </table>
+          </div>
+        </td>
+        <td>6</td>
+      </tr>
+      <tr class="r3">
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML2 表格练习</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #ffffff;
+    }
+
+    .table-wrap {
+      width: 680px;
+      margin: 0 auto;
+      border: 2px solid #666;
+      padding: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    td {
+      border: 2px solid #666;
+      font-size: 48px;
+      padding: 8px 10px;
+      vertical-align: middle;
+      text-align: left;
+    }
+
+    .r1 { height: 220px; }
+    .r2 { height: 220px; }
+    .r3 { height: 220px; }
+  </style>
+</head>
+<body>
+  <div class="table-wrap">
+    <table>
+      <colgroup>
+        <col style="width: 33.3%" />
+        <col style="width: 39.7%" />
+        <col style="width: 27%" />
+      </colgroup>
+      <tr class="r1">
+        <td colspan="2">1</td>
+        <td rowspan="2">2</td>
+      </tr>
+      <tr class="r2">
+        <td rowspan="2">4</td>
+        <td>5</td>
+      </tr>
+      <tr class="r3">
+        <td colspan="2">3</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
