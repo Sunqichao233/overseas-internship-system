@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>嵌套表格练习</title>
+  <link rel="stylesheet" href="minimal-table.css">
+</head>
+<body>
+  <h1>在单元格中嵌套表格</h1>
+
+  <table>
+    <caption>训练营日程</caption>
+    <tr>
+      <th scope="col">日期</th>
+      <th scope="col">上午</th>
+      <th scope="col">下午</th>
+    </tr>
+    <tr>
+      <th scope="row">周六</th>
+      <td>
+        <!-- 内嵌表格：上午详细安排 -->
+        <table>
+          <tr>
+            <th scope="col">时间</th>
+            <th scope="col">主题</th>
+          </tr>
+          <tr>
+            <td>09:00</td>
+            <td>签到与开场</td>
+          </tr>
+          <tr>
+            <td>10:00</td>
+            <td>HTML 复习</td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <!-- 内嵌表格：下午详细安排 -->
+        <table>
+          <tr>
+            <th scope="col">时间</th>
+            <th scope="col">主题</th>
+          </tr>
+          <tr>
+            <td>13:30</td>
+            <td>表格进阶：合并单元格</td>
+          </tr>
+          <tr>
+            <td>15:30</td>
+            <td>项目实战练习</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">周日</th>
+      <td colspan="2">自学与答疑（无嵌套表格示例）</td>
+    </tr>
+  </table>
+</body>
+</html>

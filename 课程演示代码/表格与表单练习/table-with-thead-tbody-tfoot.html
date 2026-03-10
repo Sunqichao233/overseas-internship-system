@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>使用 thead / tbody / tfoot</title>
+  <link rel="stylesheet" href="minimal-table.css">
+</head>
+<body>
+  <h1>分段表头、主体与表尾</h1>
+
+  <table>
+    <caption>季度支出汇总</caption>
+
+    <thead>
+      <tr>
+        <th scope="col">类别</th>
+        <th scope="col">Q1</th>
+        <th scope="col">Q2</th>
+        <th scope="col">Q3</th>
+        <th scope="col">Q4</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th scope="row">宠物食品</th>
+        <td>1200</td>
+        <td>1100</td>
+        <td>1300</td>
+        <td>1250</td>
+      </tr>
+      <tr>
+        <th scope="row">医疗</th>
+        <td>800</td>
+        <td>600</td>
+        <td>950</td>
+        <td>700</td>
+      </tr>
+      <tr>
+        <th scope="row">用品</th>
+        <td>450</td>
+        <td>520</td>
+        <td>480</td>
+        <td>510</td>
+      </tr>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <th scope="row">总计</th>
+        <td>2450</td>
+        <td>2220</td>
+        <td>2730</td>
+        <td>2460</td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+</html>
