@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML2 表格题目3</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #fff;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 28px;
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .table-wrap {
+      max-width: 900px;
+      border: 2px solid #555;
+      padding: 6px;
+      margin: 0 auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th,
+    td {
+      border: 2px solid #555;
+      text-align: center;
+      vertical-align: middle;
+      padding: 12px 8px;
+      font-size: 22px;
+      height: 84px;
+    }
+
+    th {
+      background: #f3f3f3;
+      font-weight: 700;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 700;
+      background: #efefef;
+      height: 68px;
+    }
+  </style>
+</head>
+<body>
+  <h1>题目3：教室功能分区表（含合并单元格）</h1>
+  <p>练习点：<code>rowspan</code>、<code>colspan</code>、表头与主体结构。</p>
+
+  <div class="table-wrap">
+    <table>
+      <tr>
+        <th class="title" colspan="5">前端实训教室分区图</th>
+      </tr>
+      <tr>
+        <th>区域</th>
+        <th>周一</th>
+        <th>周二</th>
+        <th>周三</th>
+        <th>备注</th>
+      </tr>
+      <tr>
+        <td rowspan="2">A区（讲台）</td>
+        <td colspan="2">项目讲解</td>
+        <td>答疑</td>
+        <td rowspan="2">主讲老师值班</td>
+      </tr>
+      <tr>
+        <td>作业点评</td>
+        <td colspan="2">代码演示</td>
+      </tr>
+      <tr>
+        <td rowspan="2">B区（实操）</td>
+        <td>HTML</td>
+        <td>CSS</td>
+        <td>JS</td>
+        <td rowspan="2">助教巡回指导</td>
+      </tr>
+      <tr>
+        <td colspan="3">阶段小测（机考）</td>
+      </tr>
+      <tr>
+        <td>C区（讨论）</td>
+        <td colspan="3">分组讨论 + 展示</td>
+        <td>记录员提交总结</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
