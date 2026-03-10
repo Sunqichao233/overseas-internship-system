@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>合并单元格练习</title>
+  <link rel="stylesheet" href="minimal-table.css">
+</head>
+<body>
+  <h1>colspan 与 rowspan 练习</h1>
+  <table>
+    <tr>
+      <th colspan="4" scope="colgroup">宠物看护值班表</th>
+    </tr>
+    <tr>
+      <th scope="col">日期</th>
+      <th scope="col">时段</th>
+      <th scope="col">负责人</th>
+      <th scope="col">备注</th>
+    </tr>
+    <tr>
+      <th rowspan="2" scope="rowgroup">周一</th>
+      <td>上午</td>
+      <td>小王</td>
+      <td rowspan="2">带狗去体检</td>
+    </tr>
+    <tr>
+      <td>下午</td>
+      <td>小李</td>
+    </tr>
+    <tr>
+      <th rowspan="2" scope="rowgroup">周二</th>
+      <td>上午</td>
+      <td rowspan="2">小张</td>
+      <td>清洗犬舍</td>
+    </tr>
+    <tr>
+      <td>下午</td>
+      <td>采购狗粮</td>
+    </tr>
+    <tr>
+      <th scope="row">周三</th>
+      <td colspan="3">休息日（无值班）</td>
+    </tr>
+  </table>
+</body>
+</html>
