@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>简单表单练习</title>
+</head>
+<body>
+  <h1>简单表单练习：报名信息</h1>
+  <p>目标：练习文本框、单选框、复选框、下拉框、文本域和按钮。</p>
+
+  <form action="#" method="post">
+    <p>
+      <label for="name">姓名：</label>
+      <input type="text" id="name" name="name" placeholder="请输入姓名" required>
+    </p>
+
+    <div>
+      <label>性别：</label>
+      <label><input type="radio" name="gender" value="男" checked> 男</label>
+      <label><input type="radio" name="gender" value="女"> 女</label>
+    </div>
+
+    <p>
+      <label>兴趣：</label>
+      <label><input type="checkbox" name="interest" value="HTML"> HTML</label>
+      <label><input type="checkbox" name="interest" value="CSS"> CSS</label>
+      <label><input type="checkbox" name="interest" value="JavaScript"> JavaScript</label>
+    </p>
+
+    <p>
+      <label for="class">班级：</label>
+      <select id="class" name="class" required>
+        <option value="">请选择</option>
+        <option value="前端1班">前端1班</option>
+        <option value="前端2班">前端2班</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="remark">备注：</label><br>
+      <textarea id="remark" name="remark" rows="4" cols="40" placeholder="请输入备注"></textarea>
+    </p>
+
+    <p>
+      <button type="submit">提交</button>
+      <button type="reset">重置</button>
+    </p>
+  </form>
+</body>
+</html>
