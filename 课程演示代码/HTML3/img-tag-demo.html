@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片标签示例</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f7f7f7;
+    }
+    .card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 16px;
+    }
+    figure { margin: 0 0 18px; }
+    figcaption { color: #666; font-size: 14px; margin-top: 6px; }
+    img { border: 1px solid #ccc; border-radius: 6px; }
+    code { background: #eef2ff; padding: 2px 4px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>图片标签 img 演示</h1>
+
+    <figure>
+      <img
+        src="./image.png"
+        alt="示例横幅图片"
+        width="720"
+        height="240"
+        title="这是 title 提示文字"
+        loading="lazy"
+      >
+      <figcaption>示例1：基础属性（src/alt/width/height/title/loading）</figcaption>
+    </figure>
+
+    <figure>
+      <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/img" target="_blank" rel="noopener noreferrer">
+        <img
+          src="./image.png"
+          alt="可点击跳转文档的图片"
+          width="320"
+          height="180"
+        >
+      </a>
+      <figcaption>示例2：图片作为链接</figcaption>
+    </figure>
+
+    <p>建议记住：<code>alt</code> 必写，用于无障碍与图片加载失败时的替代文本。</p>
+  </div>
+</body>
+</html>
