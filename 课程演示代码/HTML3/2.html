@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML 语义化标签样例</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f4f6f8;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    nav a {
+      margin-right: 12px;
+      text-decoration: none;
+      color: #2563eb;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 768px) {
+      .layout { grid-template-columns: 1fr; }
+    }
+    h1, h2, h3 { margin-top: 0; }
+    code { background: #eef2ff; padding: 0 4px; border-radius: 4px; }
+    figure { margin: 0; }
+    figcaption { color: #6b7280; font-size: 14px; }
+    footer small { color: #6b7280; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="card">
+      <h1>语义化标签展示页</h1>
+      <p>本页演示常见 HTML 语义化结构。</p>
+      <nav aria-label="主导航">
+        <a href="#article">文章</a>
+        <a href="#section">章节</a>
+        <a href="#aside">侧栏</a>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <article id="article" class="card">
+        <header>
+          <h2>article：独立内容单元</h2>
+          <p><time datetime="2026-03-13">2026-03-13</time> 发布</p>
+        </header>
+
+        <section id="section">
+          <h3>section：主题分区</h3>
+          <p>语义化标签让结构更清晰，有助于可访问性与 SEO。</p>
+          <figure>
+            <img src="https://via.placeholder.com/640x180?text=Semantic+HTML" alt="语义化结构示意图" width="100%">
+            <figcaption>figure/figcaption：图文说明结构。</figcaption>
+          </figure>
+        </section>
+
+        <section>
+          <h3>列表与强调</h3>
+          <ul>
+            <li><strong>strong</strong>：强调重要性</li>
+            <li><em>em</em>：强调语气</li>
+            <li><mark>mark</mark>：高亮文本</li>
+          </ul>
+        </section>
+
+        <footer>
+          <p>标签示例：<code>header</code>、<code>main</code>、<code>article</code>、<code>section</code>、<code>footer</code></p>
+        </footer>
+      </article>
+
+      <aside id="aside" class="card" aria-label="补充信息">
+        <h2>aside：侧边补充信息</h2>
+        <p>这里通常放目录、广告、作者信息、推荐阅读等。</p>
+        <address>
+          作者：前端课程组<br>
+          邮箱：teacher@example.com
+        </address>
+      </aside>
+    </main>
+
+    <footer class="card">
+      <p>footer：页面底部信息</p>
+      <small>&copy; 2026 HTML 语义化示例</small>
+    </footer>
+  </div>
+</body>
+</html>

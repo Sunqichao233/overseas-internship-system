@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>块级、行内、行内块示例</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+      background: #f7f7f7;
+      color: #111;
+    }
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 20px;
+    }
+    h1 { margin-top: 0; }
+    h2 {
+      margin: 24px 0 10px;
+      border-left: 6px solid #2563eb;
+      padding-left: 10px;
+    }
+    ul { margin: 0 0 10px 22px; }
+
+    .demo-area {
+      border: 1px dashed #aaa;
+      padding: 12px;
+      margin-top: 10px;
+      background: #fafafa;
+    }
+
+    .block-demo {
+      border: 2px solid #2563eb;
+      background: #dbeafe;
+      margin: 8px 0;
+      padding: 8px;
+      width: 70%;
+      height: 56px;
+    }
+
+    .inline-demo {
+      border: 2px solid #dc2626;
+      background: #fee2e2;
+      margin: 0 6px;
+      padding: 4px 8px;
+    }
+
+    .ib-demo {
+      display: inline-block;
+      border: 2px solid #16a34a;
+      background: #dcfce7;
+      width: 130px;
+      height: 56px;
+      margin: 6px;
+      padding: 8px;
+      vertical-align: top;
+    }
+
+    .to-block { display: block; }
+    .to-inline { display: inline; }
+    .to-inline-block { display: inline-block; width: 140px; height: 52px; }
+
+    .note { color: #b91c1c; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>块级元素、行内元素、行内块元素：规则与示例</h1>
+
+    <h2>1) 块级元素（block-level）</h2>
+    <p>常见：<code>&lt;h1&gt;~&lt;h6&gt;</code>、<code>&lt;p&gt;</code>、<code>&lt;div&gt;</code>、<code>&lt;ul&gt;</code>、<code>&lt;ol&gt;</code>、<code>&lt;li&gt;</code></p>
+    <ul>
+      <li>自己独占一行</li>
+      <li>可控制宽高、内外边距</li>
+      <li>默认宽度约等于父容器 100%</li>
+      <li>可作为容器放行内或块级元素</li>
+    </ul>
+    <p class="note">注意：p/h1~h6/dt 等文字类块级标签里，不要放 div 等块级元素。</p>
+    <div class="demo-area">
+      <div class="block-demo">div：独占一行（可设置宽高）</div>
+      <p class="block-demo">p：独占一行（可设置宽高）</p>
+      <h3 class="block-demo">h3：独占一行</h3>
+    </div>
+
+    <h2>2) 行内元素（inline-level）</h2>
+    <p>常见：<code>&lt;a&gt;</code>、<code>&lt;strong&gt;</code>、<code>&lt;b&gt;</code>、<code>&lt;em&gt;</code>、<code>&lt;i&gt;</code>、<code>&lt;del&gt;</code>、<code>&lt;u&gt;</code>、<code>&lt;span&gt;</code></p>
+    <ul>
+      <li>一行可显示多个</li>
+      <li>直接设置 width/height 一般无效</li>
+      <li>默认宽度由内容撑开</li>
+      <li>通常只容纳文本或其他行内元素</li>
+    </ul>
+    <p class="note">注意：a 里不要再嵌套 a。a 可包块级元素，但建议先改成块级模式更稳妥。</p>
+    <div class="demo-area">
+      <span class="inline-demo">span-1</span>
+      <strong class="inline-demo">strong-2</strong>
+      <em class="inline-demo">em-3</em>
+      <a class="inline-demo" href="#">a-4</a>
+      <span>它们在同一行排列。</span>
+    </div>
+
+    <h2>3) 行内块元素（inline-block）</h2>
+    <p>常见：<code>&lt;img&gt;</code>、<code>&lt;input&gt;</code>、<code>&lt;td&gt;</code>（常被称为行内块表现）</p>
+    <ul>
+      <li>可与其他元素同一行显示</li>
+      <li>默认宽度由内容决定</li>
+      <li>可设置宽高、内外边距</li>
+      <li>多个行内块之间常有空白缝隙</li>
+    </ul>
+    <div class="demo-area">
+      <span class="ib-demo">inline-block A</span>
+      <span class="ib-demo">inline-block B</span>
+      <span class="ib-demo">inline-block C</span>
+    </div>
+
+    <h2>4) 转换方法（display）</h2>
+    <div class="demo-area">
+      <p><strong>行内转块级：</strong></p>
+      <span class="inline-demo to-block">span + display:block（独占一行）</span>
+
+      <p><strong>块级转行内：</strong></p>
+      <div class="block-demo to-inline">div + display:inline（不再独占一行）</div>
+      <div class="block-demo to-inline">第二个 div 也在同一行</div>
+
+      <p><strong>行内转行内块：</strong></p>
+      <span class="inline-demo to-inline-block">span + inline-block</span>
+      <span class="inline-demo to-inline-block">可设置宽高</span>
+    </div>
+  </div>
+</body>
+</html>
