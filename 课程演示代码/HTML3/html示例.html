@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>超链接示例</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 32px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f7f8fc;
+      color: #1f2937;
+      line-height: 1.8;
+    }
+
+    .card {
+      max-width: 760px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #dbe3ee;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    code {
+      background: #eef2ff;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .demo {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 8px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>HTML 超链接示例</h1>
+    <p>超链接使用 <code>&lt;a&gt;</code> 标签创建，最常见的属性是 <code>href</code>。</p>
+
+    <div class="demo">
+      <p>1. 跳转到网页：</p>
+      <a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer">点击打开百度</a>
+    </div>
+
+    <div class="demo">
+      <p>2. 跳转到邮箱：</p>
+      <a href="mailto:example@qq.com">发送邮件给 example@qq.com</a>
+    </div>
+
+    <div class="demo">
+      <p>3. 跳转到页面指定位置：</p>
+      <a href="#bottom">点击跳到页面底部</a>
+    </div>
+
+    <div style="height: 220px;"></div>
+
+    <p id="bottom">这里是页面底部。</p>
+    <a href="#">返回顶部</a>
+  </div>
+</body>
+</html>
