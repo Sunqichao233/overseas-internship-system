@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>题目3：图片与超链接综合</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f6f7fb;
+      color: #1f2937;
+    }
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    h1 {
+      margin: 0 0 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px;
+      background: #fafafa;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #cbd5e1;
+      display: block;
+    }
+    figcaption {
+      margin-top: 8px;
+      color: #4b5563;
+      font-size: 14px;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .links li {
+      margin: 6px 0;
+    }
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>图片与超链接标签综合示例</h1>
+
+    <div class="grid">
+      <section class="card">
+        <h2>1. 普通图片展示</h2>
+        <figure>
+          <img src="./image.png" alt="课程示例图片" title="本地图片：image.png" loading="lazy">
+          <figcaption>使用了 <code>src</code>、<code>alt</code>、<code>title</code>、<code>loading</code>。</figcaption>
+        </figure>
+      </section>
+
+      <section class="card">
+        <h2>2. 图片作为链接</h2>
+        <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/img" target="_blank" rel="noopener noreferrer">
+          <img src="./image.png" alt="点击图片跳转到 MDN 图片标签文档">
+        </a>
+        <p>点击上方图片，将在新标签页打开文档。</p>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:14px;">
+      <h2>3. 文本超链接示例</h2>
+      <ul class="links">
+        <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a" target="_blank" rel="noopener noreferrer">HTML a 标签文档（新窗口）</a></li>
+        <li><a href="#top">返回页面顶部（锚点链接）</a></li>
+        <li><a href="mailto:teacher@example.com">发送邮件给老师</a></li>
+      </ul>
+    </section>
+  </div>
+</body>
+</html>

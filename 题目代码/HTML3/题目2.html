@@ -3,131 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>表格与列表综合题</title>
+  <title>课程表</title>
   <style>
     body {
       margin: 0;
-      padding: 24px;
+      padding: 10px;
       font-family: "Microsoft YaHei", sans-serif;
-      background: #f7f7f7;
-      color: #222;
-    }
-    .wrap {
-      max-width: 980px;
-      margin: 0 auto;
       background: #fff;
-      border: 1px solid #ddd;
-      padding: 20px;
-    }
-    h1 {
-      margin-top: 0;
     }
     table {
-      width: 100%;
+      width: 740px;
+      margin: 0 auto;
       border-collapse: collapse;
-      margin-top: 14px;
+      table-layout: fixed;
+      font-size: 22px;
+      text-align: center;
+    }
+    caption {
+      font-size: 42px;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
     th, td {
-      border: 1px solid #999;
-      padding: 10px;
-      text-align: left;
-      vertical-align: top;
-    }
-    th {
-      background: #f0f0f0;
-    }
-    ul, ol {
-      margin: 6px 0 0 20px;
+      border: 2px solid #444;
+      height: 56px;
+      vertical-align: middle;
       padding: 0;
     }
-    .tips {
-      margin-top: 18px;
-      padding: 12px;
-      background: #f9fafb;
-      border: 1px dashed #bbb;
+    .left-col {
+      width: 64px;
+      font-weight: 700;
+    }
+    .weekday {
+      width: 96px;
+    }
+    .group {
+      font-size: 44px;
+      font-weight: 700;
+    }
+    .time {
+      font-size: 44px;
+      font-weight: 700;
     }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>前端学习计划（表格+列表综合）</h1>
+  <table>
+    <caption>课程表</caption>
+    <tr>
+      <th class="left-col group">项目</th>
+      <th class="group" colspan="5">上课</th>
+      <th class="group" colspan="2">活动与休息</th>
+    </tr>
+    <tr>
+      <th class="left-col">星期</th>
+      <th class="weekday">星期一</th>
+      <th class="weekday">星期二</th>
+      <th class="weekday">星期三</th>
+      <th class="weekday">星期四</th>
+      <th class="weekday">星期五</th>
+      <th class="weekday">星期六</th>
+      <th class="weekday">星期日</th>
+    </tr>
 
-    <table>
-      <caption><strong>第一周学习安排表</strong></caption>
-      <thead>
-        <tr>
-          <th>日期</th>
-          <th>学习模块</th>
-          <th>任务清单（无序列表）</th>
-          <th>完成步骤（有序列表）</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>周一</td>
-          <td>HTML 基础</td>
-          <td>
-            <ul>
-              <li>常用标签</li>
-              <li>文本语义化</li>
-              <li>图片与链接</li>
-            </ul>
-          </td>
-          <td>
-            <ol>
-              <li>阅读文档</li>
-              <li>完成页面临摹</li>
-              <li>提交练习</li>
-            </ol>
-          </td>
-        </tr>
-        <tr>
-          <td>周二</td>
-          <td>表格与表单</td>
-          <td>
-            <ul>
-              <li>table 结构</li>
-              <li>rowspan / colspan</li>
-              <li>form 常用控件</li>
-            </ul>
-          </td>
-          <td>
-            <ol>
-              <li>完成 2 道表格题</li>
-              <li>完成 1 道表单题</li>
-              <li>课堂讲解复盘</li>
-            </ol>
-          </td>
-        </tr>
-        <tr>
-          <td>周三</td>
-          <td>语义化与布局</td>
-          <td>
-            <ul>
-              <li>header / main / footer</li>
-              <li>块级与行内元素</li>
-              <li>display 转换</li>
-            </ul>
-          </td>
-          <td>
-            <ol>
-              <li>拆分页面结构</li>
-              <li>完成语义化改造</li>
-              <li>总结笔记</li>
-            </ol>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <tr>
+      <td class="left-col time" rowspan="4">上午</td>
+      <td>语文</td>
+      <td>数学</td>
+      <td>英语</td>
+      <td>英语</td>
+      <td>物理</td>
+      <td>数学竞赛</td>
+      <td rowspan="4">休息</td>
+    </tr>
+    <tr>
+      <td>数学</td>
+      <td>语文</td>
+      <td>化学</td>
+      <td>物理</td>
+      <td>英语</td>
+      <td>篮球比赛</td>
+    </tr>
+    <tr>
+      <td>化学</td>
+      <td>语文</td>
+      <td>体育</td>
+      <td>历史</td>
+      <td>地理</td>
+      <td>每周一考</td>
+    </tr>
+    <tr>
+      <td>体育</td>
+      <td>化学</td>
+      <td>语文</td>
+      <td>数学</td>
+      <td>英语</td>
+      <td>社会实践</td>
+    </tr>
 
-    <div class="tips">
-      <h2>补充要求</h2>
-      <ul>
-        <li>表格中必须包含 <code>caption</code>、<code>thead</code>、<code>tbody</code>。</li>
-        <li>每行至少嵌套一个无序列表和一个有序列表。</li>
-        <li>样式尽量简洁，重点展示结构与语义。</li>
-      </ul>
-    </div>
-  </div>
+    <tr>
+      <td class="left-col time" rowspan="2">下午</td>
+      <td>语文</td>
+      <td>英语</td>
+      <td>数学</td>
+      <td>物理</td>
+      <td>数学</td>
+      <td>英语角</td>
+      <td rowspan="2">休息</td>
+    </tr>
+    <tr>
+      <td>化学</td>
+      <td>物理</td>
+      <td>地理</td>
+      <td>生物</td>
+      <td>体育</td>
+      <td>自由活动</td>
+    </tr>
+  </table>
 </body>
 </html>
