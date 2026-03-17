@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 简单实例</title>
+  <style>
+    body { font-family: "Microsoft YaHei", sans-serif; margin: 20px; line-height: 1.7; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 16px; }
+    th, td { border: 1px solid #999; padding: 8px; text-align: left; }
+    th { background: #f0f0f0; }
+    .demo { border: 1px dashed #aaa; padding: 10px; margin-bottom: 12px; }
+
+    /* display 示例 */
+    .block { display: block; background: #dbeafe; margin: 4px 0; padding: 4px; }
+    .inline { display: inline; background: #fee2e2; padding: 4px; }
+    .ib { display: inline-block; width: 120px; background: #dcfce7; padding: 4px; margin-right: 6px; }
+
+    /* position 示例 */
+    .pos-wrap { position: relative; height: 90px; background: #f8fafc; }
+    .normal { background: #e2e8f0; padding: 4px; }
+    .relative { position: relative; left: 20px; top: 4px; background: #fde68a; padding: 4px; }
+    .absolute { position: absolute; right: 8px; top: 8px; background: #fed7aa; padding: 4px; }
+
+    /* float 示例 */
+    .float-box { border: 1px solid #ccc; padding: 8px; }
+    .left { float: left; width: 110px; height: 60px; background: #c7d2fe; margin-right: 8px; text-align: center; line-height: 60px; }
+    .clear { clear: both; background: #f1f5f9; padding: 4px; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <h1>CSS 分类与布局属性（简单实例）</h1>
+
+  <table>
+    <tr>
+      <th>分类</th>
+      <th>作用</th>
+      <th>常见属性</th>
+    </tr>
+    <tr>
+      <td>文本</td>
+      <td>控制字体与颜色</td>
+      <td>color / font-size</td>
+    </tr>
+    <tr>
+      <td>盒模型</td>
+      <td>控制大小与间距</td>
+      <td>width / margin / padding / border</td>
+    </tr>
+    <tr>
+      <td>布局</td>
+      <td>控制元素位置</td>
+      <td>display / position / float</td>
+    </tr>
+  </table>
+
+  <h2>display</h2>
+  <div class="demo">
+    <span class="block">block（独占一行）</span>
+    <span class="block">block（独占一行）</span>
+    <span class="inline">inline</span>
+    <span class="inline">inline（同一行）</span>
+    <div style="margin-top:8px;">
+      <span class="ib">inline-block</span>
+      <span class="ib">inline-block</span>
+    </div>
+  </div>
+
+  <h2>position</h2>
+  <div class="demo pos-wrap">
+    <div class="normal">normal</div>
+    <div class="relative">relative（偏移）</div>
+    <div class="absolute">absolute（右上角）</div>
+  </div>
+
+  <h2>float</h2>
+  <div class="demo float-box">
+    <div class="left">float:left</div>
+    <p>文字会环绕在浮动元素旁边。</p>
+    <div class="clear">clear: both（清除浮动）</div>
+  </div>
+</body>
+</html>
