@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>题目5：关系选择器</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: Arial, sans-serif;
+      background: #f6f7fb;
+      color: #1f2937;
+      line-height: 1.7;
+    }
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      padding: 16px;
+    }
+
+    /* 后代选择器：article 内所有 p */
+    article p {
+      color: #334155;
+    }
+
+    /* 子代选择器：article 的直接子元素 h1 */
+    article > h1 {
+      margin-top: 0;
+      color: #b91c1c;
+      border-left: 4px solid #f97316;
+      padding-left: 8px;
+    }
+
+    /* 相邻兄弟选择器：h1 后紧跟的第一个 p */
+    h1 + p {
+      background: #dbeafe;
+      padding: 8px;
+    }
+
+    /* 通用兄弟选择器：h1 后面的所有 p */
+    h1 ~ p {
+      border-left: 3px solid #94a3b8;
+      padding-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <article>
+      <h1>A heading</h1>
+      <p>
+        Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion
+        daikon amaranth tatsoi tomatillo melon azuki bean garlic.
+      </p>
+
+      <p>
+        Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette
+        tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato.
+        Dandelion cucumber earthnut pea peanut soko zucchini.
+      </p>
+    </article>
+  </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>题目4：伪类与伪元素</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f6f7fb;
+      color: #1f2937;
+      line-height: 1.8;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    h1, h2 {
+      margin-top: 0;
+    }
+    .sample {
+      background: #f8fafc;
+      border-left: 4px solid #60a5fa;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+
+    /* 伪元素 */
+    .sample::first-letter {
+      font-size: 32px;
+      color: #b91c1c;
+      font-weight: 700;
+    }
+    .list-title::before {
+      content: "★ ";
+      color: #2563eb;
+    }
+    .list-title::after {
+      content: "（示例）";
+      color: #6b7280;
+      font-size: 14px;
+      margin-left: 6px;
+    }
+
+    /* 伪类 */
+    .veg-list li {
+      padding: 6px 8px;
+      margin: 4px 0;
+      border-radius: 6px;
+      background: #eff6ff;
+    }
+    .veg-list li:hover {
+      background: #dcfce7;
+      cursor: pointer;
+    }
+    .veg-list li:first-child {
+      border: 1px solid #60a5fa;
+      font-weight: 700;
+    }
+
+    input[type="text"] {
+      width: 320px;
+      border: 1px solid #9ca3af;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+    a { color: #2563eb; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>题目4：伪类和伪元素</h1>
+
+    <h2>例文</h2>
+    <p class="sample">
+      蔬菜对你有好处，所以你需要多吃大头菜、大葱、白萝卜、苋菜、番茄酱、甜瓜、红豆、大蒜。<br>
+      秋葵浓汤、甜菜叶、玉米、鸡冠菜、菊苣、秋葵浓汤、葫芦。欧芹、葱、西葫芦、塌棵菜、豌豆芽、蚕豆、羽衣甘蓝、蒲公英、秋葵、裙带菜、番茄。蒲公英、黄瓜、花生、豌豆、花生、鸡冠菜、西葫芦。
+    </p>
+
+    <h2 class="list-title">伪类示例</h2>
+    <ul class="veg-list">
+      <li>大头菜、大葱、白萝卜、苋菜</li>
+      <li>秋葵浓汤、甜菜叶、玉米、鸡冠菜</li>
+      <li>欧芹、葱、西葫芦、塌棵菜</li>
+      <li>豌豆芽、蚕豆、羽衣甘蓝、蒲公英</li>
+      <li>黄瓜、花生、豌豆、番茄</li>
+    </ul>
+
+    <h2>更多示例</h2>
+    <p>
+      焦点伪类 <code>:focus</code>：<input type="text" placeholder="点击输入框试试">
+    </p>
+    <p>
+      参考链接：
+      <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Pseudo-classes" target="_blank" rel="noopener noreferrer">伪类文档</a>
+    </p>
+  </div>
+</body>
+</html>
