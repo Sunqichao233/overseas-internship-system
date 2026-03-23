@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 练习：边框、表格与列表</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      background: #fff;
+      border: 2px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 18px;
+    }
+    h1 {
+      margin: 0 0 14px;
+      border-left: 6px solid #2563eb;
+      padding-left: 10px;
+    }
+
+    .box-demo {
+      border: 2px dashed #3b82f6;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 16px;
+      background: #eff6ff;
+    }
+    .box-demo strong {
+      border-bottom: 2px solid #1d4ed8;
+      padding-bottom: 2px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 2px solid #94a3b8;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 10px;
+      text-align: left;
+    }
+    thead th {
+      background: #334155;
+      color: #fff;
+    }
+    tbody tr:nth-child(odd) {
+      background: #f8fafc;
+    }
+    tbody tr:hover {
+      background: #e0f2fe;
+    }
+
+    .list-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 760px) {
+      .list-area { grid-template-columns: 1fr; }
+    }
+    .panel {
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+    .panel h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    .custom-ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .custom-ul li {
+      padding-left: 20px;
+      margin: 6px 0;
+      position: relative;
+    }
+    .custom-ul li::before {
+      content: "◆";
+      color: #2563eb;
+      position: absolute;
+      left: 0;
+    }
+    .custom-ol {
+      margin: 0;
+      padding-left: 22px;
+    }
+    .custom-ol li {
+      margin: 6px 0;
+      border-bottom: 1px dashed #cbd5e1;
+      padding-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>CSS 练习：边框、表格与列表属性</h1>
+
+    <div class="box-demo">
+      <strong>边框属性示例：</strong>
+      使用了 <code>border-style</code>、<code>border-width</code>、<code>border-color</code>、<code>border-radius</code>。
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>模块</th>
+          <th>练习点</th>
+          <th>难度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>边框</td>
+          <td>实线、虚线、圆角、局部边框</td>
+          <td>基础</td>
+        </tr>
+        <tr>
+          <td>表格</td>
+          <td>合并边框、表头样式、斑马纹</td>
+          <td>中等</td>
+        </tr>
+        <tr>
+          <td>列表</td>
+          <td>自定义项目符号、列表间距、编号样式</td>
+          <td>中等</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="list-area">
+      <section class="panel">
+        <h2>无序列表示例</h2>
+        <ul class="custom-ul">
+          <li>熟悉边框基础属性</li>
+          <li>理解表格常见排版</li>
+          <li>掌握列表的自定义样式</li>
+        </ul>
+      </section>
+      <section class="panel">
+        <h2>有序列表示例</h2>
+        <ol class="custom-ol">
+          <li>先写 HTML 结构</li>
+          <li>再添加边框和间距</li>
+          <li>最后优化交互与层次</li>
+        </ol>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

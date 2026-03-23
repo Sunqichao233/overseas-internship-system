@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 颜色应用：基础到交互</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #dbe3ef;
+      --brand: #2563eb;
+      --brand-strong: #1d4ed8;
+      --success: #16a34a;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --accent-grad: linear-gradient(135deg, #2563eb, #06b6d4);
+      --shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 80% -10%, #dbeafe 0%, transparent 40%),
+        radial-gradient(circle at -10% 110%, #cffafe 0%, transparent 45%),
+        var(--bg);
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 40px;
+    }
+
+    .hero {
+      background: var(--accent-grad);
+      color: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .hero h1 { margin: 0 0 8px; font-size: 34px; }
+    .hero p { margin: 0; opacity: 0.95; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .card h2 { margin: 0 0 10px; font-size: 22px; }
+    .sub { color: var(--muted); margin: 0 0 10px; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      color: #fff;
+    }
+    .chip.hex { background: #7c3aed; }
+    .chip.rgb { background: rgb(20, 184, 166); }
+    .chip.hsl { background: hsl(343, 82%, 55%); }
+    .chip.alpha { background: rgba(2, 132, 199, 0.75); }
+
+    .swatch {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .swatch-color { min-height: 54px; }
+    .swatch-meta { padding: 8px 10px; font-size: 14px; }
+
+    .btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+    .btn {
+      border: none;
+      border-radius: 9px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform .15s ease, filter .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+    .btn:active { transform: translateY(0); filter: brightness(0.94); }
+    .btn:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--brand) 30%, white);
+      outline-offset: 2px;
+    }
+    .btn.primary { background: var(--brand); }
+    .btn.success { background: var(--success); }
+    .btn.danger { background: var(--danger); }
+
+    .state-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 10px 0 12px;
+    }
+    .state-item {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #f8fafc;
+    }
+    .state-item small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .btn.is-default { background: var(--brand); }
+    .btn.is-hover { background: #3b82f6; }
+    .btn.is-active { background: #1e40af; }
+    .btn.is-focus {
+      background: var(--brand);
+      outline: 3px solid rgba(37, 99, 235, .28);
+      outline-offset: 2px;
+    }
+
+    a.demo-link {
+      color: var(--brand);
+      text-decoration: none;
+      border-bottom: 2px solid color-mix(in srgb, var(--brand) 25%, white);
+      transition: color .2s ease, border-color .2s ease;
+    }
+    a.demo-link:hover {
+      color: var(--brand-strong);
+      border-color: var(--brand-strong);
+    }
+    a.demo-link:visited { color: #7c3aed; }
+
+    .badge-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .badge {
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .badge.success { color: #166534; background: #dcfce7; }
+    .badge.warning { color: #92400e; background: #fef3c7; }
+    .badge.danger { color: #991b1b; background: #fee2e2; }
+
+    .input {
+      width: 100%;
+      margin-top: 8px;
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .input:focus {
+      outline: none;
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, .18);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>CSS 颜色应用：基础到交互</h1>
+      <p>这一页覆盖颜色表示、语义配色、组件状态和交互反馈，适合课堂演示与复用。</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>1) 基础颜色表示法</h2>
+        <p class="sub">常见写法：HEX、RGB、HSL、RGBA（透明度）。</p>
+        <div class="chips">
+          <span class="chip hex">#7C3AED</span>
+          <span class="chip rgb">rgb(20,184,166)</span>
+          <span class="chip hsl">hsl(343,82%,55%)</span>
+          <span class="chip alpha">rgba(2,132,199,.75)</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>2) 语义化配色（状态）</h2>
+        <p class="sub">用语义命名替代“红绿蓝”，更易维护：成功/警告/危险。</p>
+        <div class="badge-row">
+          <span class="badge success">SUCCESS</span>
+          <span class="badge warning">WARNING</span>
+          <span class="badge danger">DANGER</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>3) 盒子模型中的色彩分布</h2>
+        <p class="sub">用不同颜色区分 margin / border / padding / content，快速理解层次。</p>
+        <div style="background:#fee2e2;padding:14px;border-radius:10px;">
+          <div style="background:#fecaca;padding:14px;border-radius:8px;">
+            <div style="background:#fde68a;padding:14px;border-radius:6px;">
+              <div style="background:#bfdbfe;padding:14px;border-radius:4px;">
+                <strong>Content 内容区</strong><br>
+                Margin（外边距）/ Border（边框）/ Padding（内边距）/ Content（内容）
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="badge-row">
+          <span class="badge danger">Margin</span>
+          <span class="badge warning">Border</span>
+          <span class="badge success">Padding</span>
+          <span class="badge" style="color:#1e3a8a;background:#dbeafe;">Content</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>4) 交互颜色反馈</h2>
+        <p class="sub">先看“状态对照”，再实际操作按钮和输入框。</p>
+        <div class="state-grid">
+          <div class="state-item">
+            <small>默认（default）</small>
+            <button class="btn is-default" type="button">提交按钮</button>
+          </div>
+          <div class="state-item">
+            <small>悬停（hover）</small>
+            <button class="btn is-hover" type="button">提交按钮</button>
+          </div>
+          <div class="state-item">
+            <small>按下（active）</small>
+            <button class="btn is-active" type="button">提交按钮</button>
+          </div>
+          <div class="state-item">
+            <small>聚焦（focus）</small>
+            <button class="btn is-focus" type="button">提交按钮</button>
+          </div>
+        </div>
+        <div class="btns">
+          <button class="btn primary">可交互按钮（试试 hover / active）</button>
+        </div>
+        <p>
+          示例链接（试试 hover / visited）：
+          <a class="demo-link" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/color">CSS Color 文档</a>
+        </p>
+        <input class="input" type="text" placeholder="点击输入框观察 focus 颜色反馈">
+      </article>
+    </section>
+  </main>
+</body>
+</html>
