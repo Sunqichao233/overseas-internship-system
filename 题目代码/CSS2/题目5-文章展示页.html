@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>长文排版技巧展示页</title>
+  <style>
+    :root {
+      --bg: #f3f3f5;
+      --ink: #18164c;
+      --muted: #65658a;
+      --line: #7b79b8;
+      --card: #e8e8ed;
+      --highlight: #d9ff39;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 36px 26px 34px;
+    }
+    .title {
+      text-align: center;
+      font-size: clamp(38px, 5vw, 66px);
+      line-height: 1.12;
+      margin: 10px 0 30px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px 34px;
+    }
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: clamp(32px, 4vw, 56px);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+    }
+    .num {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--line);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      flex: 0 0 46px;
+    }
+
+    /* 1) Summary */
+    .summary-box {
+      background: #dcdce2;
+      border-radius: 0 18px 18px 0;
+      border-left: 16px solid var(--line);
+      padding: 20px 20px 18px;
+      max-width: 520px;
+      font-size: 23px;
+      line-height: 1.35;
+    }
+    .summary-box strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 42px;
+    }
+
+    /* 2) Bullet points */
+    .bullet-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: 560px;
+    }
+    .bullet-list li {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      align-items: center;
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+    .line {
+      height: 24px;
+      border-radius: 20px;
+      background: var(--line);
+      opacity: 0.95;
+    }
+
+    /* 3) Bold + highlight */
+    .highlight-title {
+      margin: 6px 0 0;
+      font-size: clamp(40px, 4.4vw, 68px);
+      line-height: 1.23;
+      font-weight: 500;
+    }
+    .highlight-title b {
+      font-weight: 800;
+    }
+    .mark {
+      background: var(--highlight);
+      padding: 0 8px;
+    }
+
+    /* 4) Callouts */
+    .callout {
+      border: 4px dashed var(--line);
+      border-radius: 18px;
+      padding: 20px 22px;
+      max-width: 560px;
+      font-size: 22px;
+      line-height: 1.4;
+      background: rgba(255, 255, 255, 0.4);
+    }
+    .callout em {
+      display: block;
+      font-size: 44px;
+      margin-bottom: 4px;
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    /* 5) Helpful visuals */
+    .visual-wrap {
+      display: grid;
+      grid-template-columns: 1fr 160px;
+      gap: 14px;
+      align-items: center;
+      max-width: 560px;
+    }
+    .skeleton {
+      display: grid;
+      gap: 16px;
+    }
+    .skeleton span {
+      height: 20px;
+      background: #c9c9cd;
+      border-radius: 14px;
+      display: block;
+    }
+    .skeleton span:nth-child(1) { width: 92%; }
+    .skeleton span:nth-child(2) { width: 84%; }
+    .skeleton span:nth-child(3) { width: 88%; }
+    .skeleton span:nth-child(4) { width: 98%; }
+    .icon-stack {
+      position: relative;
+      height: 120px;
+    }
+    .icon-card {
+      position: absolute;
+      border: 8px solid var(--line);
+      border-radius: 6px;
+      background: transparent;
+    }
+    .icon-card.one { width: 120px; height: 72px; left: 20px; top: 2px; }
+    .icon-card.two { width: 112px; height: 84px; left: 0; top: 38px; }
+    .icon-card.three { width: 96px; height: 78px; right: 0; top: 54px; }
+
+    .footer {
+      margin-top: 26px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: clamp(26px, 2.6vw, 40px);
+      color: #22214f;
+      font-weight: 700;
+    }
+
+    /* 样式具体例子 */
+    .examples {
+      margin-top: 18px;
+      background: #ffffff;
+      border: 2px solid #d6d6ea;
+      border-radius: 14px;
+      padding: 14px;
+    }
+    .examples h3 {
+      margin: 0 0 10px;
+      font-size: 36px;
+    }
+    .example-item {
+      margin: 8px 0;
+      font-size: 30px;
+      color: #26255f;
+    }
+    .ex-bold { font-weight: 800; }
+    .ex-spacing { letter-spacing: 2px; }
+    .ex-lineheight { line-height: 1.9; }
+    .ex-underline {
+      text-decoration: underline wavy #6d6bb0;
+      text-underline-offset: 4px;
+    }
+    .ex-shadow { text-shadow: 2px 2px 0 rgba(109, 107, 176, 0.35); }
+    .ex-highlight {
+      background: #d9ff39;
+      padding: 0 6px;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1 class="title">5 Formatting Techniques<br>for Long-Form Content</h1>
+
+    <section class="grid">
+      <article class="section">
+        <h2><span class="num">1</span>Summary</h2>
+        <div class="summary-box">
+          <strong>Key Takeaway</strong>
+          Provide a short summation of key points about the content.
+        </div>
+      </article>
+
+      <article class="section">
+        <h2><span class="num">4</span>Callouts</h2>
+        <div class="callout">
+          <em>Example</em>
+          Emphasized text sections visually distinct from the body.
+        </div>
+      </article>
+
+      <article class="section">
+        <h2><span class="num">2</span>Bullet points</h2>
+        <ul class="bullet-list">
+          <li><span class="dot"></span><span class="line"></span></li>
+          <li><span class="dot"></span><span class="line"></span></li>
+          <li><span class="dot"></span><span class="line"></span></li>
+          <li><span class="dot"></span><span class="line"></span></li>
+        </ul>
+      </article>
+
+      <article class="section">
+        <h2><span class="num">5</span>Helpful visuals</h2>
+        <div class="visual-wrap">
+          <div class="skeleton">
+            <span></span><span></span><span></span><span></span>
+          </div>
+          <div class="icon-stack">
+            <div class="icon-card one"></div>
+            <div class="icon-card two"></div>
+            <div class="icon-card three"></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="section" style="grid-column: 1 / -1;">
+        <h2><span class="num">3</span><span class="highlight-title"><b>Bolding</b> and <span class="mark">highlighting</span> key points</span></h2>
+      </article>
+    </section>
+
+    <section class="examples">
+      <h3>Style Examples</h3>
+      <p class="example-item ex-bold">font-weight: 800（加粗文本）</p>
+      <p class="example-item ex-spacing">letter-spacing: 2px（增加字距）</p>
+      <p class="example-item ex-lineheight">line-height: 1.9（增加行距，让长文更易读）</p>
+      <p class="example-item ex-underline">text-decoration: underline wavy（波浪下划线）</p>
+      <p class="example-item ex-shadow">text-shadow: 2px 2px 0 rgba(...)（文字阴影）</p>
+      <p class="example-item">background: <span class="ex-highlight">#d9ff39（高亮关键字）</span></p>
+    </section>
+
+    <footer class="footer">
+      <span>Read More: nngroup.com/articles/formatting-long-form-content</span>
+      <span>NN/g</span>
+    </footer>
+  </main>
+</body>
+</html>
