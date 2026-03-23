@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS1 题目1</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: linear-gradient(135deg, #f7f9fc 0%, #e8eef7 100%);
+      color: #1f2937;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: 380px;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 12px 28px rgba(31, 41, 55, 0.12);
+      overflow: hidden;
+    }
+
+    .banner {
+      height: 120px;
+      background: linear-gradient(90deg, #2563eb, #0ea5e9);
+    }
+
+    .content {
+      padding: 20px;
+      margin-top: -36px;
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      background: #dbeafe;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #1d4ed8;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 24px;
+    }
+
+    .job {
+      margin: 0 0 12px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .tags {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tags li {
+      display: inline-block;
+      background: #eef2ff;
+      color: #4338ca;
+      border-radius: 999px;
+      padding: 4px 10px;
+      margin: 0 8px 8px 0;
+      font-size: 12px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 16px;
+      padding: 10px 0;
+      margin-top: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+    }
+
+    .tips {
+      margin-top: 12px;
+      border-top: 1px dashed #d1d5db;
+      padding-top: 10px;
+      font-size: 13px;
+      color: #4b5563;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="card">
+      <div class="banner"></div>
+      <div class="content">
+        <div class="avatar">CSS</div>
+        <h1>前端学习卡片</h1>
+        <p class="job">CSS 选择器 + 盒模型 + 伪类练习</p>
+
+        <ul class="tags">
+          <li>边框圆角</li>
+          <li>阴影</li>
+          <li>渐变背景</li>
+          <li>hover 效果</li>
+        </ul>
+
+        <button class="btn" type="button">开始练习</button>
+
+        <div class="tips">
+          提示：<br>
+          1. 用 <code>box-shadow</code> 做卡片阴影。<br>
+          2. 用 <code>border-radius</code> 做圆角和圆形头像。<br>
+          3. 用 <code>:hover</code> 给按钮加交互效果。<br>
+          4. 用 <code>display: inline-block</code> 排版标签项。
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

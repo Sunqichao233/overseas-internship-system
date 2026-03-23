@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS1 题目2</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f4f6fb;
+      color: #1f2937;
+      line-height: 1.8;
+    }
+    .article {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+    .article h1 {
+      margin: 0 0 8px;
+      font-size: 30px;
+      color: #0f172a;
+    }
+    .meta {
+      color: #64748b;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+    .lead {
+      font-size: 18px;
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      padding: 10px 12px;
+      border-radius: 6px;
+    }
+    .lead::first-letter {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1d4ed8;
+    }
+    .article h2 {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      font-size: 22px;
+      border-left: 4px solid #22c55e;
+      padding-left: 8px;
+    }
+    .highlight {
+      background: #fef9c3;
+      padding: 0 4px;
+      border-radius: 4px;
+    }
+    .quote {
+      margin: 12px 0;
+      padding: 12px 14px;
+      background: #fff7ed;
+      border-left: 4px solid #fb923c;
+      color: #7c2d12;
+    }
+    .tips {
+      margin: 12px 0;
+      padding: 12px;
+      background: #f8fafc;
+      border: 1px dashed #94a3b8;
+      border-radius: 8px;
+    }
+    .tips li:nth-child(odd) {
+      color: #0f766e;
+    }
+    .tips li:nth-child(even) {
+      color: #7c3aed;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      border-bottom: 1px dashed #93c5fd;
+    }
+    a:hover {
+      color: #1d4ed8;
+      border-bottom-style: solid;
+    }
+  </style>
+</head>
+<body>
+  <article class="article">
+    <h1>高效学习前端的 3 个关键习惯</h1>
+    <p class="meta">作者：课程教研组 | 更新时间：2026-03-18</p>
+
+    <p class="lead">
+      前端学习不是“看懂就会”，而是“写出来、改得动、讲得清”。把每天的练习做成可复盘的代码，比单纯刷视频更有效。
+    </p>
+
+    <h2>1. 用项目组织知识点</h2>
+    <p>
+      把 HTML、CSS、JavaScript 分散练习后，尽快回到一个小项目里整合。比如做一个“个人卡片页”，你会同时用到
+      <span class="highlight">布局、排版、交互状态</span>，这比孤立记忆属性更稳。
+    </p>
+
+    <h2>2. 把错误当作素材</h2>
+    <p>
+      报错不是失败，而是学习入口。建议建立“错误笔记”，记录问题、原因和修复方式。下一次遇到同类问题，处理速度会明显提高。
+    </p>
+    <blockquote class="quote">
+      “你调试过的每一个 bug，都会变成你能力的一部分。”
+    </blockquote>
+
+    <h2>3. 每周固定一次输出</h2>
+    <p>
+      输出可以是代码讲解、页面复刻或课堂分享。推荐阅读：
+      <a href="https://developer.mozilla.org/zh-CN/" target="_blank" rel="noopener noreferrer">MDN 文档</a>
+      ，边看边改会更快形成长期记忆。
+    </p>
+
+    <ul class="tips">
+      <li>每天 30 分钟持续练习，比周末突击更有效。</li>
+      <li>优先练基础：盒模型、定位、选择器。</li>
+      <li>每完成一个页面，主动做一次重构。</li>
+      <li>保持代码整洁，命名清晰，少堆无用样式。</li>
+    </ul>
+  </article>
+</body>
+</html>
