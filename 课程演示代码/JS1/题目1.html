@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS1 题目1</title>
+</head>
+<body>
+  <h1>萌萌小店</h1>
+  <p>打开页面会弹出欢迎语，关闭/离开页面会弹出提示语。</p>
+
+  <script>
+    // 页面打开时弹窗
+    window.addEventListener('load', function () {
+      alert('欢迎光临萌萌小店');
+    });
+
+    // 页面关闭/离开时弹窗（现代浏览器可能显示为系统默认提示文案）
+    window.addEventListener('beforeunload', function (event) {
+      alert('记得下次再来喔');
+      event.preventDefault();
+      event.returnValue = '记得下次再来喔';
+    });
+  </script>
+</body>
+</html>

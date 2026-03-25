@@ -34,6 +34,7 @@ next-env.d.ts
 
 # Uploaded files and grading results
 /public/uploads/*
+/作业/*
 !/public/uploads/.gitkeep
 /public/results/*
 !/public/results/.gitkeep

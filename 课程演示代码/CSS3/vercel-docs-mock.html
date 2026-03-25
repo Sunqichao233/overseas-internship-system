@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vercel Docs Mock</title>
+  <style>
+    :root {
+      --bg: #f6f6f7;
+      --panel: #ffffff;
+      --text: #111214;
+      --muted: #64676b;
+      --line: #e3e3e6;
+      --hover: #ececef;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .topbar {
+      height: 82px;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 34px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 46px;
+      font-weight: 700;
+    }
+    .triangle {
+      width: 0;
+      height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-bottom: 24px solid #000;
+      transform: rotate(90deg);
+    }
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .search {
+      min-width: 350px;
+      height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #f0f0f1;
+      color: #8a8d91;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      font-size: 18px;
+    }
+    .kbd {
+      border: 1px solid #d1d1d4;
+      background: #fafafa;
+      padding: 2px 8px;
+      border-radius: 8px;
+      color: #73767a;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .btn {
+      height: 48px;
+      padding: 0 20px;
+      border: 1px solid #d6d6d9;
+      border-radius: 12px;
+      background: #fff;
+      font-size: 32px;
+      font-weight: 600;
+      color: #1d1e20;
+    }
+    .menu-btn {
+      width: 48px;
+      border-radius: 50%;
+      padding: 0;
+      font-size: 28px;
+    }
+
+    /* 三列布局核心：
+       1) 用 CSS Grid 管理整体区域，不用 float。
+       2) grid-template-columns: 350px 1fr 360px
+          - 左列：固定 350px（导航）
+          - 中列：1fr（正文，自适应剩余空间）
+          - 右列：固定 360px（目录/工具）
+       3) 父容器 .layout 包住 left/main/right 三个子元素，天然形成三列。 */
+    .layout {
+      display: grid;
+      grid-template-columns: 350px 1fr 360px;
+      gap: 0;
+      min-height: calc(100vh - 82px);
+    }
+
+    /* 左列和右列用边框与中间正文分隔，形成文档站常见三栏结构 */
+    .left {
+      border-right: 1px solid var(--line);
+      padding: 26px 22px;
+    }
+    .group {
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+    .nav-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 25px;
+      color: #4c4f54;
+    }
+    .nav-item:hover { background: var(--hover); }
+    .arrow { color: #8d9095; font-weight: 700; }
+
+    .main {
+      padding: 32px 46px 36px;
+    }
+    h1 {
+      margin: 6px 0 18px;
+      font-size: clamp(38px, 4.2vw, 76px);
+      line-height: 1.1;
+      letter-spacing: -0.8px;
+    }
+    .date {
+      font-size: 23px;
+      color: #55585d;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 14px;
+    }
+    .main p {
+      margin: 0 0 18px;
+      font-size: clamp(28px, 2.7vw, 46px);
+      line-height: 1.42;
+      letter-spacing: -0.2px;
+      color: #1e2024;
+      max-width: 980px;
+    }
+    .main h2 {
+      margin: 22px 0 12px;
+      font-size: clamp(42px, 4vw, 70px);
+      line-height: 1.16;
+    }
+    .underline {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+    }
+
+    .right {
+      border-left: 1px solid var(--line);
+      padding: 32px 28px;
+    }
+    .right h3 {
+      margin: 0 0 16px;
+      font-size: 42px;
+    }
+    .toc {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 18px;
+    }
+    .toc li {
+      font-size: 24px;
+      color: #4e5156;
+      margin: 0 0 10px;
+      line-height: 1.4;
+    }
+    .toc li.active {
+      color: #111214;
+      font-weight: 600;
+    }
+    .right hr {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 12px 0 18px;
+    }
+    .tool {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      color: #585b60;
+      margin: 14px 0;
+    }
+    .tool .icon {
+      width: 30px;
+      text-align: center;
+      color: #4a4d52;
+    }
+
+    /* 响应式降级：
+       宽度 < 1200px：三列 -> 两列（隐藏右侧目录）
+       grid-template-columns: 300px 1fr */
+    @media (max-width: 1200px) {
+      .layout { grid-template-columns: 300px 1fr; }
+      .right { display: none; }
+      .search { min-width: 280px; }
+    }
+    /* 宽度 < 900px：两列 -> 一列（隐藏左侧导航）
+       仅保留正文区，提升移动端可读性 */
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .left { display: none; }
+      .topbar { padding: 0 14px; }
+      .search { display: none; }
+      .btn { height: 42px; font-size: 24px; padding: 0 14px; }
+      .main { padding: 20px 16px 28px; }
+      .main p { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="triangle"></span>
+      <span>Vercel</span>
+    </div>
+    <div class="top-actions">
+      <div class="search">
+        <span>Search Documentation</span>
+        <span class="kbd">⌘ K</span>
+      </div>
+      <button class="btn">Ask AI</button>
+      <button class="btn menu-btn">☰</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="left">
+      <div class="group">
+        <div class="nav-item">Getting Started</div>
+        <div class="nav-item">Fundamental Concepts <span class="arrow">›</span></div>
+        <div class="nav-item">Supported Frameworks <span class="arrow">›</span></div>
+        <div class="nav-item">Incremental Migration</div>
+        <div class="nav-item">Production Checklist</div>
+        <div class="nav-item">Knowledge Base</div>
+        <div class="nav-item">APIs &amp; SDKs <span class="arrow">›</span></div>
+      </div>
+      <div class="group" style="border-bottom:none;">
+        <div class="nav-item">Access <span class="arrow">›</span></div>
+        <div class="nav-item">AI <span class="arrow">›</span></div>
+        <div class="nav-item">Build &amp; Deploy <span class="arrow">›</span></div>
+        <div class="nav-item">CDN <span class="arrow">›</span></div>
+        <div class="nav-item">CLI <span class="arrow">›</span></div>
+        <div class="nav-item">Collaboration <span class="arrow">›</span></div>
+        <div class="nav-item">Compute <span class="arrow">›</span></div>
+        <div class="nav-item">Flags <span class="arrow">›</span></div>
+        <div class="nav-item">Integrations <span class="arrow">›</span></div>
+        <div class="nav-item">Multi-tenant <span class="arrow">›</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <h1>Vercel Documentation</h1>
+      <div class="date">Last updated March 13, 2026</div>
+      <p>Vercel is the AI Cloud, a unified platform for building, deploying, and scaling AI-powered applications. Ship web apps, agentic workloads, and everything in between.</p>
+      <h2>Get started with Vercel</h2>
+      <p>Build any type of application on Vercel: static sites with your favorite <span class="underline">framework, multi-tenant</span> SaaS products, <span class="underline">microfrontends</span>, or <span class="underline">AI-powered agents</span>.</p>
+      <p>The <span class="underline">Vercel Marketplace</span> provides integrations for AI providers, databases, CMSs, analytics, and storage.</p>
+      <p>Connect your <span class="underline">Git repository</span> to deploy on every push, with <span class="underline">automatic preview environments</span> for testing changes before production.</p>
+    </main>
+
+    <aside class="right">
+      <h3>On this page</h3>
+      <ul class="toc">
+        <li class="active">Get started with Vercel</li>
+        <li>Quick references</li>
+        <li>Build your applications</li>
+        <li>Use Vercel's AI infrastructure</li>
+        <li>Collaborate with your team</li>
+        <li class="active">Secure your applications</li>
+        <li>Deploy and scale</li>
+        <li>Explore guides and tutorials</li>
+      </ul>
+      <hr>
+      <div class="tool"><span class="icon">🅼</span>Copy as Markdown</div>
+      <div class="tool"><span class="icon">›_</span>Install Vercel Plugin</div>
+      <div class="tool"><span class="icon">👍</span>Give feedback</div>
+      <div class="tool"><span class="icon">💬</span>Ask AI about this page</div>
+    </aside>
+  </div>
+</body>
+</html>
