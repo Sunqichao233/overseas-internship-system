@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS1.2 示例1</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f7f7f9;
+      color: #1f2937;
+      transition: background .2s ease, color .2s ease;
+    }
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    h1 { margin-top: 0; }
+    .panel {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px dashed #94a3b8;
+      border-radius: 10px;
+      background: #f8fafc;
+    }
+    .demo2 {
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      background: #fafafa;
+    }
+    .state-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .state {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+    }
+    .arrow {
+      color: #d97706;
+      font-weight: 700;
+    }
+    .icon {
+      font-size: 34px;
+      line-height: 1;
+      color: #6b7280;
+    }
+    .ok {
+      color: #16a34a;
+      font-weight: 700;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>示例1：根据条件改写 HTML 和 CSS</h1>
+    <p>
+      通过 JavaScript 可以操作 HTML 与 CSS，立即改变页面局部内容和样式，
+      不需要刷新整个页面。
+    </p>
+
+    <div class="panel" id="targetPanel">
+      当前状态：未执行
+    </div>
+
+    <button id="runBtn" type="button">运行示例1</button>
+
+    <div class="demo2">
+      <h2>示例2：状态切换（菜单/关闭 + 加载/完成）</h2>
+      <div class="state-row">
+        <span class="state"><span class="icon" id="menuIcon">☰</span><span id="menuText">菜单</span></span>
+        <span class="arrow">→</span>
+        <span class="state"><span class="icon" id="closeIcon">✖</span><span id="closeText">关闭</span></span>
+      </div>
+      <div class="state-row">
+        <span class="state"><span class="icon" id="loadingIcon">◌</span><span id="loadingText">正在加载...</span></span>
+        <span class="arrow">→</span>
+        <span class="state"><span class="icon ok" id="doneIcon">✔</span><span class="ok" id="doneText">完成!</span></span>
+      </div>
+      <button id="runDemo2Btn" type="button">运行示例2</button>
+    </div>
+  </div>
+
+  <script>
+    const runBtn = document.getElementById('runBtn');
+    const targetPanel = document.getElementById('targetPanel');
+    const runDemo2Btn = document.getElementById('runDemo2Btn');
+    const menuIcon = document.getElementById('menuIcon');
+    const menuText = document.getElementById('menuText');
+    const closeIcon = document.getElementById('closeIcon');
+    const closeText = document.getElementById('closeText');
+    const loadingIcon = document.getElementById('loadingIcon');
+    const loadingText = document.getElementById('loadingText');
+    const doneIcon = document.getElementById('doneIcon');
+    const doneText = document.getElementById('doneText');
+
+    runBtn.addEventListener('click', function () {
+      const hour = new Date().getHours();
+
+      if (hour >= 18) {
+        document.body.style.background = '#0f172a';
+        document.body.style.color = '#e2e8f0';
+        targetPanel.innerHTML = '当前状态：<strong>夜间模式</strong>（根据时间条件改写了 HTML 和 CSS）';
+        targetPanel.style.background = '#1e293b';
+        targetPanel.style.color = '#e2e8f0';
+        targetPanel.style.borderColor = '#64748b';
+      } else {
+        document.body.style.background = '#f7f7f9';
+        document.body.style.color = '#1f2937';
+        targetPanel.innerHTML = '当前状态：<strong>白天模式</strong>（根据时间条件改写了 HTML 和 CSS）';
+        targetPanel.style.background = '#f8fafc';
+        targetPanel.style.color = '#1f2937';
+        targetPanel.style.borderColor = '#94a3b8';
+      }
+    });
+
+    // 示例2：根据状态改写页面中的图标和文本
+    runDemo2Btn.addEventListener('click', function () {
+      // 第一组：菜单 -> 关闭
+      menuIcon.textContent = '☰';
+      menuText.textContent = '菜单';
+      closeIcon.textContent = '✖';
+      closeText.textContent = '关闭';
+
+      // 第二组：加载中 -> 完成（延迟模拟）
+      loadingIcon.textContent = '◌';
+      loadingText.textContent = '正在加载...';
+      doneIcon.textContent = '…';
+      doneText.textContent = '处理中';
+      doneIcon.classList.remove('ok');
+      doneText.classList.remove('ok');
+
+      setTimeout(function () {
+        doneIcon.textContent = '✔';
+        doneText.textContent = '完成!';
+        doneIcon.classList.add('ok');
+        doneText.classList.add('ok');
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
