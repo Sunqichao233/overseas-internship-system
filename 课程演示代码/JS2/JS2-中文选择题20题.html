@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS选择题</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f7f7f9;
+      color: #1f2937;
+      line-height: 1.75;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    h1 { margin-top: 0; font-size: 28px; }
+    ol { margin: 0; padding-left: 24px; }
+    li { margin-bottom: 14px; }
+    .opt { margin-left: 8px; color: #374151; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>JS选择题</h1>
+    <ol>
+      <li>
+        在 HTML 中引入外部 JavaScript 文件，正确写法是（ ）。
+        <div class="opt">A. &lt;script href="js/script.js"&gt;&lt;/script&gt;</div>
+        <div class="opt">B. &lt;script src="js/script.js" defer&gt;&lt;/script&gt;</div>
+        <div class="opt">C. &lt;javascript src="js/script.js"&gt;&lt;/javascript&gt;</div>
+        <div class="opt">D. &lt;link rel="js" href="js/script.js"&gt;</div>
+      </li>
+      <li>
+        获取 `id="colorPicker"` 元素，最常用的是（ ）。
+        <div class="opt">A. document.getElementById("colorPicker")</div>
+        <div class="opt">B. document.query("#colorPicker")</div>
+        <div class="opt">C. document.pick("#colorPicker")</div>
+        <div class="opt">D. window.getNode("colorPicker")</div>
+      </li>
+      <li>
+        使用 `querySelector` 获取 `id="colorText"`，正确写法是（ ）。
+        <div class="opt">A. document.querySelector("colorText")</div>
+        <div class="opt">B. document.querySelector("#colorText")</div>
+        <div class="opt">C. document.querySelector(".colorText")（已知是 id）</div>
+        <div class="opt">D. querySelector("#colorText")（无 document）</div>
+      </li>
+      <li>
+        读取颜色选择器当前值，正确属性是（ ）。
+        <div class="opt">A. color.text</div>
+        <div class="opt">B. color.data</div>
+        <div class="opt">C. color.value</div>
+        <div class="opt">D. color.innerHTML</div>
+      </li>
+      <li>
+        把段落文字改为“カラーコード：”，应使用（ ）。
+        <div class="opt">A. element.textContent = "カラーコード：" </div>
+        <div class="opt">B. element.value = "カラーコード："（p 标签）</div>
+        <div class="opt">C. element.style = "カラーコード：" </div>
+        <div class="opt">D. element.src = "カラーコード：" </div>
+      </li>
+      <li>
+        改变网页背景色为当前选中颜色，正确的是（ ）。
+        <div class="opt">A. document.background = color.value</div>
+        <div class="opt">B. document.body.style.backgroundColor = color.value</div>
+        <div class="opt">C. body.color = color.value</div>
+        <div class="opt">D. window.style.background = color.value</div>
+      </li>
+      <li>
+        当颜色选择器变化时触发函数，事件类型应使用（ ）。
+        <div class="opt">A. submit</div>
+        <div class="opt">B. input</div>
+        <div class="opt">C. hover</div>
+        <div class="opt">D. load</div>
+      </li>
+      <li>
+        绑定事件的正确写法是（ ）。
+        <div class="opt">A. color.on("input", colorBg)</div>
+        <div class="opt">B. color.addEventListener("input", colorBg)</div>
+        <div class="opt">C. color.bind("input", colorBg)</div>
+        <div class="opt">D. addEventListener(color, "input", colorBg)</div>
+      </li>
+      <li>
+        下列模板字符串写法正确的是（ ）。
+        <div class="opt">A. "カラーコード: ${color.value}"</div>
+        <div class="opt">B. 'カラーコード: ${color.value}'</div>
+        <div class="opt">C. `カラーコード: ${color.value}`</div>
+        <div class="opt">D. /カラーコード: ${color.value}/</div>
+      </li>
+      <li>
+        `if (color.value === '#ffffff')` 中 `===` 表示（ ）。
+        <div class="opt">A. 赋值</div>
+        <div class="opt">B. 仅比较值</div>
+        <div class="opt">C. 严格相等比较（值和类型）</div>
+        <div class="opt">D. 不相等</div>
+      </li>
+      <li>
+        下面关于注释的说法正确的是（ ）。
+        <div class="opt">A. `//` 可写单行注释</div>
+        <div class="opt">B. `##` 可写单行注释</div>
+        <div class="opt">C. `--` 可写单行注释</div>
+        <div class="opt">D. HTML 注释可直接替代 JS 注释</div>
+      </li>
+      <li>
+        关于“内部 JS”和“外部 JS”，正确的是（ ）。
+        <div class="opt">A. 外部 JS 更利于复用与维护</div>
+        <div class="opt">B. 内部 JS 一定比外部 JS 快</div>
+        <div class="opt">C. 内部 JS 必须写在 body 外</div>
+        <div class="opt">D. 外部 JS 不能访问 DOM</div>
+      </li>
+      <li>
+        `const` 与 `let` 的正确理解是（ ）。
+        <div class="opt">A. 两者完全一样</div>
+        <div class="opt">B. `const` 声明后必须赋初值，且不能重新赋值</div>
+        <div class="opt">C. `let` 不能修改值</div>
+        <div class="opt">D. `const` 只能用于字符串</div>
+      </li>
+      <li>
+        将“颜色处理逻辑”封装成函数的主要好处是（ ）。
+        <div class="opt">A. 代码更长</div>
+        <div class="opt">B. 代码可复用、结构更清晰</div>
+        <div class="opt">C. 只能执行一次</div>
+        <div class="opt">D. 无法绑定事件</div>
+      </li>
+      <li>
+        页面加载完成后立即显示当前颜色代码，合理做法是（ ）。
+        <div class="opt">A. 只写事件监听，不主动调用函数</div>
+        <div class="opt">B. 页面加载时调用一次颜色处理函数</div>
+        <div class="opt">C. 只依赖 CSS 自动生成</div>
+        <div class="opt">D. 用 alert 显示即可</div>
+      </li>
+      <li>
+        关于 DOM 的说法正确的是（ ）。
+        <div class="opt">A. DOM 只能读，不能改</div>
+        <div class="opt">B. DOM 是浏览器中页面结构对象模型，可被 JS 操作</div>
+        <div class="opt">C. DOM 只用于 CSS</div>
+        <div class="opt">D. DOM 与 HTML 没有关系</div>
+      </li>
+      <li>
+        颜色选择器 `<input type="color">` 返回值通常格式是（ ）。
+        <div class="opt">A. `rgb(0,0,0)`</div>
+        <div class="opt">B. `black`</div>
+        <div class="opt">C. `#000000` 这种十六进制字符串</div>
+        <div class="opt">D. `0,0,0`</div>
+      </li>
+      <li>
+        若想在颜色为黑色时额外显示 `(black)`，应使用（ ）。
+        <div class="opt">A. switch 或 if 条件判断</div>
+        <div class="opt">B. 只能写死在 HTML 里</div>
+        <div class="opt">C. 只能用 CSS 伪类</div>
+        <div class="opt">D. 不能实现</div>
+      </li>
+      <li>
+        将脚本标签加上 `defer` 的主要作用是（ ）。
+        <div class="opt">A. 阻塞 HTML 解析直到脚本执行完</div>
+        <div class="opt">B. 延迟脚本到 HTML 解析后再执行</div>
+        <div class="opt">C. 让脚本永远不执行</div>
+        <div class="opt">D. 强制脚本在 CSS 前执行</div>
+      </li>
+      <li>
+        下列哪项最符合“交互式颜色选择器页面”的实现思路（ ）。
+        <div class="opt">A. 只写 HTML，不写 JS</div>
+        <div class="opt">B. JS 获取颜色值 → 修改背景色 → 更新文本</div>
+        <div class="opt">C. 每次选色都刷新整个页面</div>
+        <div class="opt">D. 仅在控制台输出，不改页面</div>
+      </li>
+    </ol>
+  </div>
+</body>
+</html>
