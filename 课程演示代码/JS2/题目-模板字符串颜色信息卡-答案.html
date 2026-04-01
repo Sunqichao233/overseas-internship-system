@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>模板字符串颜色信息卡（答案）</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f5f7fb;
+      font-family: "Microsoft YaHei", sans-serif;
+    }
+    .card {
+      width: 360px;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      padding: 18px;
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      text-align: center;
+      color: #1f2937;
+    }
+    .preview {
+      height: 150px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      background: #000000;
+      margin-bottom: 12px;
+    }
+    #colorText {
+      margin: 0 0 12px;
+      text-align: center;
+      font-size: 18px;
+      color: #374151;
+    }
+    #colorPicker {
+      width: 100%;
+      height: 42px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Color Preview</h1>
+    <div id="preview" class="preview"></div>
+    <p id="colorText">カラーコード: #000000 (black)</p>
+    <input id="colorPicker" type="color" value="#000000">
+  </div>
+
+  <script>
+    const colorText = document.querySelector('#colorText');
+    const colorPicker = document.querySelector('#colorPicker');
+    const preview = document.querySelector('#preview');
+
+    function updateColorCard() {
+      const value = colorPicker.value;
+      preview.style.backgroundColor = value;
+
+      if (value === '#ffffff') {
+        colorText.textContent = `カラーコード: ${value} (white)`;
+      } else if (value === '#000000') {
+        colorText.textContent = `カラーコード: ${value} (black)`;
+      } else {
+        colorText.textContent = `カラーコード: ${value}`;
+      }
+    }
+
+    colorPicker.addEventListener('input', updateColorCard);
+    updateColorCard();
+  </script>
+</body>
+</html>

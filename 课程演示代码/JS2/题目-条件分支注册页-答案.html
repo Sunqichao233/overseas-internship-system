@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>题目：条件分支注册页（答案）</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f5f7fb;
+      font-family: "Microsoft YaHei", sans-serif;
+      color: #1f2937;
+    }
+    .card {
+      width: 420px;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: 24px;
+    }
+    label {
+      display: block;
+      margin: 8px 0 6px;
+      font-size: 14px;
+      color: #374151;
+    }
+    input {
+      width: 100%;
+      height: 40px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0 10px;
+      box-sizing: border-box;
+      font-size: 15px;
+    }
+    .tips {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.7;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 10px;
+    }
+    button {
+      margin-top: 14px;
+      width: 100%;
+      height: 42px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>用户注册</h1>
+
+    <label for="username">用户名</label>
+    <input id="username" type="text" placeholder="仅英文和数字">
+
+    <label for="password">密码</label>
+    <input id="password" type="password" placeholder="8-16位，含大小写字母和数字">
+
+    <label for="confirmPassword">确认密码</label>
+    <input id="confirmPassword" type="password" placeholder="请再次输入密码">
+
+    <button id="registerBtn" type="button">注册</button>
+
+    <div class="tips">
+      规则：<br>
+      1. 用户名只能包含英文和数字。<br>
+      2. 密码长度 8-16 位。<br>
+      3. 密码必须包含：大写字母、小写字母、数字。<br>
+      4. 两次输入的密码必须一致。
+    </div>
+  </div>
+
+  <script>
+    const usernameEl = document.querySelector('#username');
+    const passwordEl = document.querySelector('#password');
+    const confirmPasswordEl = document.querySelector('#confirmPassword');
+    const registerBtn = document.querySelector('#registerBtn');
+
+    registerBtn.addEventListener('click', function () {
+      const username = usernameEl.value.trim();
+      const password = passwordEl.value;
+      const confirmPassword = confirmPasswordEl.value;
+
+      // 1) 用户名不能为空
+      if (!username) {
+        alert('用户名不能为空');
+        return;
+      }
+
+      // 2) 用户名只能是英文和数字
+      const usernameReg = /^[A-Za-z0-9]+$/;
+      if (!usernameReg.test(username)) {
+        alert('用户名只能包含英文和数字');
+        return;
+      }
+
+      // 3) 密码长度限制
+      if (password.length < 8 || password.length > 16) {
+        alert('密码长度必须是 8-16 位');
+        return;
+      }
+
+      // 4) 密码复杂度：大写、小写、数字
+      const hasUpper = /[A-Z]/.test(password);
+      const hasLower = /[a-z]/.test(password);
+      const hasNumber = /[0-9]/.test(password);
+      if (!(hasUpper && hasLower && hasNumber)) {
+        alert('密码必须包含大写字母、小写字母和数字');
+        return;
+      }
+
+      // 5) 两次密码一致
+      if (password !== confirmPassword) {
+        alert('两次输入的密码不一致');
+        return;
+      }
+
+      alert(`注册成功，欢迎你：${username}`);
+    });
+  </script>
+</body>
+</html>

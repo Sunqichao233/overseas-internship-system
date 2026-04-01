@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>题目：毕业证姓名替换（答案）</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      gap: 16px;
+    }
+    .panel {
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    input {
+      width: 260px;
+      height: 40px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0 10px;
+      font-size: 16px;
+    }
+    button {
+      height: 40px;
+      border: none;
+      border-radius: 8px;
+      padding: 0 14px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: #2563eb;
+      color: #fff;
+    }
+    .btn-ghost {
+      background: #eef2ff;
+      color: #1e3a8a;
+    }
+    .tip {
+      margin-top: 8px;
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .certificate {
+      border: 8px double #c9a85f;
+      border-radius: 12px;
+      padding: 28px 26px;
+      background:
+        linear-gradient(180deg, #fffdf5 0%, #fff 100%);
+    }
+    .title {
+      text-align: center;
+      font-size: 42px;
+      letter-spacing: 6px;
+      margin: 0 0 18px;
+      color: #8b5e17;
+      font-weight: 700;
+    }
+    .sub {
+      text-align: center;
+      margin: 0 0 18px;
+      color: #6b7280;
+    }
+    .content {
+      font-size: 20px;
+      line-height: 2;
+      text-align: justify;
+      text-indent: 2em;
+    }
+    .name {
+      font-size: 34px;
+      font-weight: 700;
+      color: #b91c1c;
+      border-bottom: 2px solid #b91c1c;
+      padding: 0 6px;
+      margin: 0 4px;
+    }
+    .footer {
+      margin-top: 26px;
+      display: flex;
+      justify-content: space-between;
+      color: #4b5563;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="panel">
+      <h1>毕业证姓名替换器</h1>
+      <div class="controls">
+        <input id="nameInput" type="text" placeholder="请输入新姓名，例如：王小明">
+        <button id="replaceBtn" class="btn-primary" type="button">替换毕业证姓名</button>
+        <button id="resetBtn" class="btn-ghost" type="button">恢复原姓名</button>
+      </div>
+      <p class="tip">说明：输入姓名后点击按钮，会把毕业证中所有“张三”替换为你输入的姓名。</p>
+    </section>
+
+    <section class="certificate panel" id="certificate">
+      <h2 class="title">毕业证书</h2>
+      <p class="sub">Certificate of Graduation</p>
+      <p class="content">
+        兹证明
+        <span class="name">张三</span>
+        同学在本校完成全部课程学习，成绩合格，准予毕业。
+        特发此证，以资鼓励。经学校审核，确认
+        <span class="name">张三</span>
+        同学已达到毕业要求，并具备相应专业知识与实践能力。
+      </p>
+      <div class="footer">
+        <span>颁发单位：萌萌学院</span>
+        <span>日期：2026 年 4 月 1 日</span>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const nameInput = document.querySelector('#nameInput');
+    const replaceBtn = document.querySelector('#replaceBtn');
+    const resetBtn = document.querySelector('#resetBtn');
+    const certificate = document.querySelector('#certificate');
+
+    const originalHtml = certificate.innerHTML;
+
+    replaceBtn.addEventListener('click', function () {
+      const newName = nameInput.value.trim();
+      if (!newName) {
+        alert('请先输入要替换的新姓名');
+        return;
+      }
+
+      // 每次都从原始模板开始替换，避免多次操作叠加错误
+      const replaced = originalHtml.replaceAll('张三', newName);
+      certificate.innerHTML = replaced;
+    });
+
+    resetBtn.addEventListener('click', function () {
+      certificate.innerHTML = originalHtml;
+      nameInput.value = '';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>题目：输入姓名并弹窗欢迎（答案）</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f5f7fb;
+      font-family: "Microsoft YaHei", sans-serif;
+    }
+    .card {
+      width: 380px;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 24px;
+      color: #1f2937;
+    }
+    input {
+      width: 100%;
+      height: 40px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>欢迎弹窗练习</h1>
+    <input id="nameInput" type="text" placeholder="请输入你的姓名">
+    <button id="welcomeBtn" type="button">确认并欢迎</button>
+  </div>
+
+  <script>
+    const nameInput = document.querySelector('#nameInput');
+    const welcomeBtn = document.querySelector('#welcomeBtn');
+
+    welcomeBtn.addEventListener('click', function () {
+      const name = nameInput.value.trim();
+      if (!name) {
+        alert('请先输入姓名');
+        return;
+      }
+      alert(`欢迎：${name}`);
+    });
+  </script>
+</body>
+</html>
